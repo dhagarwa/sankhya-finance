@@ -1,0 +1,5 @@
+ticker,quarter,date,Revenue ($M),Operating Cash Flow ($M),Investing Cash Flow ($M),Financing Cash Flow ($M),Operating Income ($M),Net Income ($M),Gross Profit ($M),Revenue QoQ Growth (%),Revenue YoY Growth (%),Operating Income YoY Growth (%),operating_cash_flow_yoy_growth
+INTU,Q4 2020,,1816.0,287.0,14.0,2830.0,483.0,445.0,1494.0,-39.5,,,
+INTU,Q3 2020,,3002.0,1937.0,-15.0,-254.0,1413.0,1084.0,2576.0,77.0,,,
+INTU,Q2 2020,,1696.0,317.0,-39.0,-217.0,270.0,240.0,1356.0,45.6,,,
+INTU,Q1 2020,,1165.0,-127.0,-57.0,-325.0,10.0,57.0,875.0,,,,
