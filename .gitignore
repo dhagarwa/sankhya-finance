@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+
+# Data
+*.csv
+
+# Images
+*.png
+*.jpg
+*.jpeg
+
+# Environment
+.env
+.venv
+venv/
+ENV/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# Logs
+*.log
+
+# Distribution
+dist/
+build/
+*.egg-info/

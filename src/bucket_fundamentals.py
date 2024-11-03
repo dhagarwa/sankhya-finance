@@ -76,20 +76,77 @@ class PolygonFinancialService:
             logger.error(f"Error fetching financial data for {ticker}: {str(e)}")
             return None
 
-    async def fetch_stock_prices(self, ticker: str, from_date: str, to_date: str) -> Dict[str, Any]:
-        """Fetch daily adjusted close prices."""
-        endpoint = f"{self.base_url}/v2/aggs/ticker/{ticker}/range/1/day/{from_date}/{to_date}"
-        params = {"apiKey": self.api_key, "adjusted": "true"}
+    async def fetch_stock_prices(self, ticker: str, target_date: str, window_days: int = 5) -> Dict[str, Any]:
+        """
+        Fetch stock price for a specific date or closest business day.
         
+        Args:
+            ticker: Stock symbol
+            target_date: Target date in 'YYYY-MM-DD' format
+            window_days: Number of days to look before and after target date (default 5)
+        
+        Returns:
+            Dictionary containing the price data for closest available date
+        """
         try:
+            # Convert target_date to datetime
+            target_dt = datetime.strptime(target_date, '%Y-%m-%d')
+            
+            # Calculate window start and end dates
+            start_date = (target_dt - timedelta(days=window_days)).strftime('%Y-%m-%d')
+            end_date = (target_dt + timedelta(days=window_days)).strftime('%Y-%m-%d')
+            
+            # Build endpoint URL for daily bars
+            endpoint = f"{self.base_url}/v2/aggs/ticker/{ticker}/range/1/day/{start_date}/{end_date}"
+            
+            params = {
+                "apiKey": self.api_key,
+                "adjusted": "true",
+                "sort": "asc"  # Sort by date ascending
+            }
+            
+            logger.info(f"Fetching prices for {ticker} between {start_date} and {end_date}")
+            
             async with self.session.get(endpoint, params=params) as response:
                 if response.status != 200:
                     logger.error(f"Error fetching price data for {ticker}: {response.status}")
                     return None
+                
                 data = await response.json()
-                return data
+                
+                if data.get('status') == 'ERROR':
+                    logger.error(f"API error for {ticker}: {data.get('error')}")
+                    return None
+                
+                if not data.get('results'):
+                    logger.warning(f"No price data found for {ticker} around {target_date}")
+                    return None
+                
+                # Find the closest date to target_date
+                target_timestamp = target_dt.timestamp() * 1000  # Convert to milliseconds
+                closest_result = min(
+                    data['results'],
+                    key=lambda x: abs(x['t'] - target_timestamp)
+                )
+                
+                # Create a clean response with just the closest day's data
+                response_data = {
+                    'status': 'OK',
+                    'ticker': ticker,
+                    'target_date': target_date,
+                    'actual_date': datetime.fromtimestamp(closest_result['t']/1000).strftime('%Y-%m-%d'),
+                    'results': [closest_result]
+                }
+                
+                logger.info(
+                    f"Found price for {ticker} on {response_data['actual_date']} "
+                    f"(target: {target_date}): ${closest_result['c']}"
+                )
+                
+                return response_data
+                
         except Exception as e:
-            logger.error(f"Error fetching price data for {ticker}: {str(e)}")
+            logger.error(f"Error fetching price data for {ticker} on {target_date}: {str(e)}")
             return None
 
     def calculate_growth_metrics(self, financial_data: Dict[str, Any]) -> Dict[str, List[float]]:
@@ -398,53 +455,6 @@ async def analyze_quarterly_metrics(ticker: str) -> pd.DataFrame:
         print(f"Error processing {ticker}: {str(e)}")
         return pd.DataFrame()
 
-# async def main():
-#     try:
-#         analyzer = StockAnalyzer()
-#         # Test with a single stock first
-#         test_ticker = "AAPL"
-#         logger.info(f"\nDebug: Fetching data for {test_ticker}")
-#         await analyzer.service.fetch_and_debug_financial_data(test_ticker)
-        
-#         # Example stock bucket
-#         tech_stocks = ["AAPL", "MSFT", "GOOGL", "NVDA", "META"]
-        
-#         # Analyze stocks
-#         results = await analyzer.analyze_stock_bucket(tech_stocks)
-        
-#         # Convert results to DataFrame for easier visualization
-#         data = []
-#         for ticker, metrics in results.items():
-#             try:
-#                 avg_revenue_growth = (
-#                     sum(metrics['growth_metrics']['revenue_growth']) / 
-#                     len(metrics['growth_metrics']['revenue_growth'])
-#                 ) if metrics['growth_metrics']['revenue_growth'] else 0
-                
-#                 avg_fcf_growth = (
-#                     sum(metrics['growth_metrics']['fcf_growth']) / 
-#                     len(metrics['growth_metrics']['fcf_growth'])
-#                 ) if metrics['growth_metrics']['fcf_growth'] else 0
-                
-#                 data.append({
-#                     'ticker': ticker,
-#                     'avg_revenue_growth': round(avg_revenue_growth, 2),
-#                     'avg_fcf_growth': round(avg_fcf_growth, 2),
-#                     'vs_spy': metrics['spy_performance']['relative_return'],
-#                     'vs_qqq': metrics['qqq_performance']['relative_return']
-#                 })
-#             except Exception as e:
-#                 logger.error(f"Error processing results for {ticker}: {str(e)}")
-#                 continue
-        
-#         df = pd.DataFrame(data)
-#         print("\nAnalysis Results:")
-#         print(df.to_string())
-        
-#     except Exception as e:
-#         logger.error(f"Main execution error: {str(e)}")
-#         raise
-
 
 async def analyze_saas_companies():
     try:
@@ -483,6 +493,8 @@ async def analyze_saas_companies():
             combined_df[income_col] += df[income_col]
             combined_df[cashflow_col] += df[cashflow_col]
         
+        # Change ticker to "SaaS Trifecta"
+        combined_df['ticker'] = 'SaaS Trifecta'
         # Calculate growth rates
         combined_df['Revenue YoY Growth (%)'] = combined_df[revenue_col].pct_change(-4) * 100
         combined_df['Income YoY Growth (%)'] = combined_df[income_col].pct_change(-4) * 100
@@ -493,8 +505,8 @@ async def analyze_saas_companies():
         combined_df[numeric_columns] = combined_df[numeric_columns].round(2)
         
         print("\nCombined SaaS Companies Metrics:")
-        # print(combined_df.to_string())
-        import pdb; pdb.set_trace()
+        print(combined_df.to_string())
+        # import pdb; pdb.set_trace()
         return company_dfs, combined_df
         
     except Exception as e:
@@ -504,6 +516,189 @@ async def analyze_saas_companies():
             print(f"\n{ticker} DataFrame columns:")
             print(df.columns.tolist())
         raise
+
+
+
+async def fetch_saas_trifecta_history() -> Dict[str, pd.DataFrame]:
+    """
+    Fetches quarterly price and market cap data for ADBE, CRM, and NOW over the last 5 years.
+    Returns a dictionary of DataFrames, one for each company.
+    """
+    try:
+        saas_tickers = ["ADBE", "CRM", "NOW"]
+        company_data = {}
+        
+        # Generate quarterly dates for last 5 years
+        end_date = datetime.now()
+        dates = []
+        for i in range(20):  # 20 quarters = 5 years
+            quarter_end = end_date - relativedelta(months=3*i)
+            # Use the 15th of the last month of each quarter for consistency
+            quarter_end = quarter_end.replace(day=15)
+            dates.append(quarter_end.strftime('%Y-%m-%d'))
+        
+        dates.reverse()  # Sort chronologically
+        
+        service = PolygonFinancialService()
+        async with service:
+            for ticker in saas_tickers:
+                quarterly_data = []
+                
+                print(f"\nFetching data for {ticker}")
+                print("=" * 50)
+                
+                for date in dates:
+                    print(f"Processing date: {date}")
+                    
+                    # Fetch price data
+                    price_data = await service.fetch_stock_prices(ticker, date)
+                    
+                    if price_data and price_data.get('results'):
+                        result = price_data['results'][0]
+                        close_price = result['c']
+                        
+                        # Fetch financial data for shares outstanding
+                        financial_data = await service.fetch_financial_data(ticker)
+                        shares_outstanding = None
+                        
+                        if financial_data and financial_data.get('results'):
+                            # Get the most recent financial data before this date
+                            try:
+                                relevant_data = next(
+                                    (data for data in financial_data['results'] 
+                                    if data['start_date'] <= date),
+                                    None
+                                )
+
+                                if relevant_data and 'financials' in relevant_data:
+                                    income_statement = relevant_data['financials'].get('income_statement', {})
+                                    if 'basic_average_shares' in income_statement:
+                                        shares_outstanding = income_statement['basic_average_shares']['value']
+                                        if shares_outstanding is None or shares_outstanding <= 0:
+                                            import pdb; pdb.set_trace()
+                                        
+                                else:
+                                    raise Exception(f"No shares outstanding data found for {ticker}")
+                            except Exception as e:
+                                print(f"Error fetching financial data for {ticker}: {str(e)}")
+                                import pdb; pdb.set_trace()
+                                continue
+                            
+                        quarter_info = {
+                            'date': date,
+                            'quarter': f"Q{(datetime.strptime(date, '%Y-%m-%d').month-1)//3 + 1} "
+                                     f"{datetime.strptime(date, '%Y-%m-%d').year}",
+                            'close_price': close_price,
+                            'actual_date': price_data['actual_date'],
+                            'volume': result['v'],
+                            'shares_outstanding': shares_outstanding,
+                            'market_cap': shares_outstanding * close_price if shares_outstanding else None
+                        }
+                        
+                        print(f"Close Price: ${close_price:,.2f}")
+                        print(f"Market Cap: ${quarter_info['market_cap']:,.2f}" if quarter_info['market_cap'] else "Market Cap: N/A")
+                        print("-" * 30)
+                        
+                        quarterly_data.append(quarter_info)
+                
+                # Create DataFrame for this company
+                df = pd.DataFrame(quarterly_data)
+                
+                # Calculate quarter-over-quarter and year-over-year returns
+                df['qoq_return'] = df['close_price'].pct_change() * 100
+                df['yoy_return'] = df['close_price'].pct_change(periods=4) * 100
+                
+                # Format market cap in billions
+                if 'market_cap' in df.columns:
+                    df['market_cap_billions'] = df['market_cap'] / 1_000_000_000
+                
+                # Round numeric columns
+                numeric_cols = df.select_dtypes(include=['float64']).columns
+                df[numeric_cols] = df[numeric_cols].round(2)
+                
+                company_data[ticker] = df
+                
+                # Export individual company data
+                os.makedirs('exports', exist_ok=True)
+                timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+                filename = f'exports/{ticker}_historical_data_{timestamp}.csv'
+                df.to_csv(filename, index=False)
+                print(f"\nData exported to {filename}")
+        
+        return company_data
+        
+    except Exception as e:
+        logger.error(f"Error fetching SaaS Trifecta history: {str(e)}")
+        raise
+
+
+
+def create_saas_trifecta_index(company_data: Dict[str, pd.DataFrame]) -> pd.DataFrame:
+    """
+    Creates a market cap weighted index from individual company data.
+    
+    Args:
+        company_data: Dictionary with company tickers as keys and DataFrames as values
+    
+    Returns:
+        DataFrame with market cap weighted index
+    """
+    try:
+        # Create a new DataFrame with just the date column from first company
+        first_company_df = next(iter(company_data.values()))
+        index_df = pd.DataFrame({
+            'date': first_company_df['date'],
+            'quarter': first_company_df['quarter']
+        })
+        
+        # For each date, calculate total market cap and weighted prices
+        for date in index_df['date']:
+            total_market_cap = 0
+            weighted_price = 0
+            
+            # First calculate total market cap for this date
+            for ticker, df in company_data.items():
+                date_data = df[df['date'] == date].iloc[0]
+                if pd.notna(date_data['market_cap']) and date_data['market_cap'] > 0:
+                    total_market_cap += date_data['market_cap']
+            
+            # Then calculate weighted price contributions
+            for ticker, df in company_data.items():
+                date_data = df[df['date'] == date].iloc[0]
+                if pd.notna(date_data['market_cap']) and date_data['market_cap'] > 0:
+                    weight = date_data['market_cap'] / total_market_cap
+                    weighted_price += date_data['close_price'] * weight
+                    
+                    # Store individual company data
+                    index_df.loc[index_df['date'] == date, f'{ticker}_price'] = date_data['close_price']
+                    index_df.loc[index_df['date'] == date, f'{ticker}_weight'] = weight * 100  # as percentage
+                    index_df.loc[index_df['date'] == date, f'{ticker}_market_cap_B'] = date_data['market_cap'] / 1e9
+            
+            index_df.loc[index_df['date'] == date, 'weighted_price'] = weighted_price
+            index_df.loc[index_df['date'] == date, 'total_market_cap_B'] = total_market_cap / 1e9
+        
+        # Calculate returns
+        index_df['qoq_return'] = index_df['weighted_price'].pct_change() * 100
+        index_df['yoy_return'] = index_df['weighted_price'].pct_change(periods=4) * 100
+        
+        # Round numeric columns
+        numeric_cols = index_df.select_dtypes(include=['float64']).columns
+        index_df[numeric_cols] = index_df[numeric_cols].round(2)
+        
+        # Export to CSV
+        os.makedirs('exports', exist_ok=True)
+        timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+        filename = f'exports/saas_trifecta_index_{timestamp}.csv'
+        index_df.to_csv(filename, index=False)
+        print(f"\nIndex data exported to {filename}")
+        
+        return index_df
+        
+    except Exception as e:
+        logger.error(f"Error creating SaaS Trifecta index: {str(e)}")
+        raise
+
+
 
 
 async def main():
@@ -516,6 +711,52 @@ async def main():
         print(f"Main execution error: {str(e)}")
         raise
 
+async def test_stock_price_fetch():
+    """Simple test function to verify stock price fetching."""
+    try:
+        service = PolygonFinancialService()
+        async with service:
+            # Test cases
+            test_cases = [
+                ("AAPL", "2024-01-15"),  # Recent date
+                ("MSFT", "2023-12-25"),  # Holiday
+                ("GOOGL", "2024-01-13"), # Weekend
+            ]
+            
+            print("\nTesting stock price fetching:")
+            print("=" * 50)
+            
+            for ticker, date in test_cases:
+                print(f"\nFetching {ticker} for target date: {date}")
+                price_data = await service.fetch_stock_prices(ticker, date)
+                print(price_data)
+                if price_data and price_data.get('results'):
+                    result = price_data['results'][0]
+                    print(f"Target date: {price_data['target_date']}")
+                    print(f"Actual date: {price_data['actual_date']}")
+                    print(f"Close price: ${result['c']:,.2f}")
+                    print(f"Volume: {result['v']:,}")
+                    print("-" * 30)
+                else:
+                    print(f"Failed to fetch data for {ticker}")
+                    
+    except Exception as e:
+        print(f"Error in test function: {str(e)}")
+        raise
+
+
+
+
+
+
 if __name__ == "__main__":
     # asyncio.run(main())
-    asyncio.run(analyze_saas_companies())
+    # TESTING analysze SaaS companies fundamentals
+    # asyncio.run(analyze_saas_companies())
+    
+    # TESTING stock price fetching
+    # asyncio.run(test_stock_price_fetch())
+    
+    company_data = asyncio.run(fetch_saas_trifecta_history())
+    index_df = create_saas_trifecta_index(company_data)
+    import pdb; pdb.set_trace()
