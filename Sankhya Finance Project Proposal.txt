@@ -1,0 +1,131 @@
+﻿Project Overview
+The goal of this project is to develop a codebase for an advanced equity analysis platform that can handle complex financial queries related to S&P 500 companies. Utilizing natural language processing (NLP) for user-friendly query input and automated data presentation in text and plot formats, this project aims to meet high analytical standards that other tools, like Finchat.io or SQL-based engines, currently cannot achieve.
+The platform will allow users to query real-time and historical data on stocks and financials for in-depth analysis, presenting results with clarity and interactivity. Examples include comparing revenue growth among S&P 500 companies or analyzing multiple companies as if they were part of an ETF.
+________________
+
+
+Project Objectives
+1. Develop a Query-Driven Equity Analysis System:
+   * Build a dynamic codebase for processing complex natural language queries related to S&P 500 companies and stock data.[a][b][c][d]
+   * Allow for multiple stock comparisons, sector/industry-specific insights, and automated data processing for on-the-fly or pre-stored data.[e]
+2. Key Features:[f][g]
+   * Intelligent Query Processing[h][i]: Enable users to submit natural language queries, which are parsed and decomposed for data retrieval and analysis.[j][k]
+   * Real-Time Data Fetching and Processing[l]: Integrate with multiple APIs to retrieve up-to-date and historical stock and financial data.
+   * Complex Data Manipulation and Presentation[m]: Transform[n] data into actionable insights, including calculations like YoY growth rates, ETF simulations, and sector comparisons.[o][p]
+   * Automated Visualization: Provide clear, data-driven plots alongside text summaries to enhance user understanding.[q][r]
+3. Technology Stack:
+   * Backend: Python (Flask for REST APIs)
+   * Data Processing: Large Language Models (LLM APIs), LangChain, Swarm agents for decomposing complex queries.
+   * Storage: Relational or NoSQL database for faster retrieval and storage with Retrieval Augmented Generation (RAG).
+   * Deployment: GCP/AWS (depending on available credits).
+   * User Interface: Potential integration with REST API endpoints or chat-based interfaces like WhatsApp for easy accessibility.
+4. Examples of Expected Functionality:
+   * Example Query 1: “Get me the S&P 500 companies with the largest revenue YoY growth this year.”
+   * Example Query 2: “How did three software companies (CRM, ADBE, NOW) perform as an ETF relative to the S&P 500 over the last 5 years?[s] Plot their combined revenue growth rates over this period.”
+5. Target Audience:
+   * Investors, analysts, and financial professionals seeking custom, data-driven insights on S&P 500 companies beyond typical financial platforms.
+   * Developers and AI enthusiasts interested in learning and contributing to a project that combines NLP, financial data, and advanced plotting.
+   * Finance Influencers for the presentation part. O tool available to put it in an infographic and use it readily. 
+________________
+
+
+Collaboration Goals
+1. Skills Needed:
+   * Backend development in Python and Flask.
+   * Experience with NLP and large language models (preferably LangChain, Swarm agents).
+   * Data handling and database management with RAG setup.
+   * Frontend design skills (optional but beneficial).
+2. Ideal Contributor Profile:
+   * Experience in three or more of the above skills, highly motivated, and comfortable taking ownership of complex tasks.
+   * Flexible with hours, committed to a learning experience, and willing to work in a hands-on collaborative environment.
+3. Benefits for Collaborators:
+   * Practical experience with cutting-edge technology in NLP, data processing, and financial analytics.
+   * Exposure to working with APIs, automation, and cloud deployment on platforms like GCP or AWS.
+   * Opportunity to collaborate on a project with significant potential to disrupt financial analysis tools.
+________________
+
+
+Competitive Landscape
+* Current Competitors:
+   * Finchat.io: Limited ability to process complex, customised financial queries.
+   * SQL-Based Analytical Engines: Effective for simpler queries but limited in complex natural language queries and cross-company data manipulation.
+This project differentiates itself by offering NLP-driven complex query handling, automated data visualizations, and real-time insights that cater directly to the needs of financial analysts.
+________________
+
+
+Next Steps
+* Assemble the Core Team: Identify and onboard key team members with the right skill set.
+* Secure API and Cloud Credits: Apply for API credits and cloud resources with GCP/AWS to facilitate data processing and storage.
+* Define and Prioritize MVP Features: Focus on core query processing capabilities, API integration, and data visualization.
+* Development Phases:
+   * Phase 1: Basic query processing and data retrieval.
+   * Phase 2: Integration of complex processing and advanced plotting.
+   * Phase 3: Testing, optimization, and deployment on a scalable platform.
+
+
+
+
+
+
+Thanks lingyi.kong353@gmail.com
+
+
+
+
+Competitors: 
+        1. Possibly samaya.ai (https://samaya.ai/): Product not accessible but stellar team.  I was informed about them by an investor from Menlo Ventures yesterday. 
+        2. Finchat.io : ChatGPT for equity analysis 
+
+
+
+NEXT STEPS:
+1. Discussion on design choices. 
+2. Division of tasks on the implementation side. Cross collaboration and help is encouraged but we can also take ownership of one part of the stack for asynchronous progress. 
+3. Parallel work on creating demos, websites and other information to get AWS, Azure, GCP credits (could be about tens of thousands of dollars so this step is important)
+4. Continue conversation with investors to explore Product Market fit and pivot if required 
+
+
+→ Standardised 10 stocks (Lingyi)
+* Which API to use? Two API’s? Numerical data? Play with them? 
+* How to pull the data from the SEC? Conference call? 10-K, 10-Q?  
+* Asynchronous code? 
+
+
+-> Bloomberg API (Chhavi is looking into it ) 
+
+Largest 10 stocks in SP500
+  
+We will start with these stocks. 
+
+
+
+Next step: (11/11/24) 
+DA: We have decided the first step is to look into APIs and focus on two APIs. Once we decide on APIs, we need a comprehensive document detailing all the things API might have. The data retrieval agent then has to understand all those things available in API and query the appropriate “existing” information from the API. (lingyi.kong353@gmail.com and Chhavi Sharma please help me create this document) . We need every detail possible on every stock available in the APIs to increase the coverage of the kind of queries we can cover in our first iteration. 
+
+
+vsameerrk@gmail.com to make a diagram for the flow we are thinking of. And start working on conversational AI agent. This means we break down natural language query into a series of steps and what data is needed to process those steps. This data will then be queried by the retrieval agent. To look into o1 models if they are better at this than 4o
+
+
+[a]any specific index and time period targeted?
+[b]Atleast last 15 years data, but we can start with five years. What do you think?
+[c]Agreed, we can start with a smaller data size and then scale up for greater scalability.
+[d]Whats the time granularity of data we wish to capture, essentially "tick size"?
+[e]It would be helpful to have a standardized data format that includes stock indicators, date/time, sector, index membership, and market size to make it easier for the LLM to categorize them.
+[f]I think for each of the features mentioned below, it would be beneficial to mention the supported inputs and expected output specifications so that while designing the framework, we can use those specifications to guide our choices.
+
+
+Would like to hear others' opinions on this.
+[g]yes right standardized specifications would be required. Also for LLM to understand the input and output correctly
+[h]What is the expected output of this part of the pipeline? Is it expected to output a schema which contains which data source to query, the time period to query, the metric/indicator to query etc?
+[i]it's an open question for now. One idea is that we need the agent to think of the data (prices, fundamentals sector, etf information) it has access to and then infer what data it needs to retrieve.  @lingyi.kong353@gmail.com suggested to use multiple agents so I am going by that design.
+[j]A query-parsing agent can be deployed to accomplish this task.
+[k]yes correct, do we have open source repos we can make use of?
+[l]What would be the set of input data types here?
+I think we might have to deal with two types of data here during this part of the pipeline. 1) Readily available structured data, like tables, present in some database and pass it to next step in the pipeline. 2) Unstructured data, like SEC filing pdfs, which are to be parsed to generate JSON files that we need to analyze further using LLMs (i.e next step in the pipeline). For the second part, there are some solutions like https://unstructured.io/
+[m]Thinking from the design point of view, we might need to start with a set of input formats that we support here. For ex: one such set could be {Tables, JSONs}. We can add additional support from thereon.
+[n]Part of RAG.
+[o]An analytic agent can be deployed to accomplish this task.
+[p]Yes, as you suggested we will go with multiple agents. I am thinking of having the option for the analytic agent to do LLM based processing or call specific pythonic functions/methods we write. The latter could help in cases where LLM fails to do complex processing and can call relevant functions directly.
+[q]A visualization agent can be deployed to accomplish this task.
+[r]Agreed
+[s]This query is a bit vague, doesn't mention what is the rebalancing/distribution criteria for the stocks mentioned in the new ETF
