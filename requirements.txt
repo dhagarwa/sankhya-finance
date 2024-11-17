@@ -17,6 +17,10 @@ pylint==3.0.2
 pytest==7.4.3
 pytest-asyncio==0.21.1
 pytest-cov==4.1.0
-
+langchain
+langchain-google-genai
+google-generativeai
+pydantic
+python-dotenv
 # Optional: for enhanced error tracking
 sentry-sdk==1.39.1     # Optional: for error tracking
