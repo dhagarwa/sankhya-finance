@@ -1,0 +1,13 @@
+---
+import StockTable from '../components/StockTable';
+import Disclaimer from '../components/Disclaimer';
+import Layout from '../layouts/Layout.astro';
+import recommendations from '../data/recommendations.json';
+
+console.log('Loaded recommendations:', recommendations); // Debug log
+---
+
+<Layout>
+    <StockTable client:load recommendations={recommendations} />
+    <Disclaimer client:load />
+</Layout>

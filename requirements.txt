@@ -24,4 +24,5 @@ pydantic
 python-dotenv
 # Optional: for enhanced error tracking
 sentry-sdk==1.39.1     # Optional: for error tracking
-yfinance
+yfinance>=0.2.28
+plotly

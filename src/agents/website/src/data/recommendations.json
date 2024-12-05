@@ -1,0 +1,107 @@
+[
+  {
+    "ticker": "MMM",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "AOS",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "ABT",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "ABBV",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "High PE ratio and uncertain future growth.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "ACN",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "ADBE",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "High PE ratio and lack of dividend yield.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "AMD",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "High PE ratio and uncertain growth prospects in the near term.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "AES",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "AFL",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "A",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "APD",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "ABNB",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "AKAM",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "ALB",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Insufficient data for comprehensive analysis",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "ARE",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "High PE ratio and uncertain growth in the current market.",
+    "date": "2024-12-05"
+  }
+]
