@@ -45,7 +45,7 @@
     "ticker": "AMD",
     "recommendation": "HOLD",
     "confidence": 0.7,
-    "rationale": "High PE ratio and uncertain growth prospects in the near term.",
+    "rationale": "High PE ratio and uncertain growth prospects.",
     "date": "2024-12-05"
   },
   {
@@ -102,6 +102,3422 @@
     "recommendation": "HOLD",
     "confidence": 0.7,
     "rationale": "High PE ratio and uncertain growth in the current market.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "ALGN",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "ALLE",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "LNT",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "ALL",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "GOOGL",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "GOOG",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "MO",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "AMZN",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "AMCR",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "AMTM",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Insufficient data for comprehensive analysis",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "AEE",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "AEP",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "AXP",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "AIG",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "AMT",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "High PE ratio suggests overvaluation.  Insufficient data for comprehensive analysis.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "AWK",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "AMP",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "AME",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "AMGN",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "APH",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "ADI",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "ANSS",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "High PE ratio suggests overvaluation.  Insufficient data for comprehensive analysis.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "AON",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "APA",
+    "recommendation": "BUY",
+    "confidence": 0.9,
+    "rationale": "Low PE ratio and strong sector tailwinds",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "AAPL",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "AMAT",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "APTV",
+    "recommendation": "BUY",
+    "confidence": 0.95,
+    "rationale": "Strong growth and reasonable valuation",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "ACGL",
+    "recommendation": "BUY",
+    "confidence": 0.95,
+    "rationale": "Low PE ratio suggests undervaluation.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "ADM",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "ANET",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "AJG",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "AIZ",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "T",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "ATO",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "ADSK",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "High PE ratio suggests overvaluation.  Insufficient data for comprehensive analysis.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "ADP",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "AZO",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "AVB",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "AVY",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "AXON",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "High PE ratio suggests overvaluation.  Insufficient data for comprehensive analysis.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "BKR",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "BALL",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "BAC",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "BAX",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "High PE ratio suggests overvaluation.  Insufficient data for comprehensive analysis.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "BDX",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "BRK.B",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Insufficient data for a conclusive recommendation",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "BBY",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "TECH",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "High PE ratio suggests overvaluation.  Insufficient data for comprehensive analysis.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "BIIB",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "BLK",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "BX",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "High PE ratio and uncertain growth outlook in the current financial climate.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "BK",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "BA",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "N/A PE ratio and lack of other key metrics hinder a conclusive recommendation.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "BKNG",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "BWA",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "BSX",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "High PE ratio suggests overvaluation.  Insufficient data for comprehensive analysis.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "BMY",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Insufficient data for comprehensive analysis.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "AVGO",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "High PE ratio and uncertain growth prospects in the current market environment.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "BR",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "BRO",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "BF.B",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Insufficient data for a conclusive recommendation",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "BLDR",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "BG",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "BXP",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "CHRW",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "CDNS",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "High PE ratio suggests overvaluation.  Insufficient data for comprehensive analysis.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "CZR",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "CPT",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "High PE ratio suggests overvaluation.  Insufficient data for comprehensive analysis.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "CPB",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "COF",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "CAH",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "KMX",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "CCL",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "CARR",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "CTLT",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Insufficient data for comprehensive analysis.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "CAT",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "CBOE",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "CBRE",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "CDW",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "CE",
+    "recommendation": "BUY",
+    "confidence": 0.9,
+    "rationale": "Low PE ratio and strong market position",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "COR",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "CNC",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "CNP",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "CF",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "CRL",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "SCHW",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "CHTR",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "CVX",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "CMG",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "High PE ratio suggests overvaluation.  Insufficient data for comprehensive analysis.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "CB",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "CHD",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "CI",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "CINF",
+    "recommendation": "BUY",
+    "confidence": 0.95,
+    "rationale": "Strong growth and reasonable valuation",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "CTAS",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "High PE ratio suggests overvaluation.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "CSCO",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "C",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "CFG",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "CLX",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "CME",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "CMS",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "KO",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "CTSH",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "CL",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "CMCSA",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "CAG",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "COP",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "ED",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "STZ",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "High PE ratio suggests overvaluation.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "CEG",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "COO",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "High PE ratio suggests overvaluation.  More data needed on growth and profitability.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "CPRT",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "GLW",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "High PE ratio suggests overvaluation.  Insufficient data for comprehensive analysis.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "CPAY",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "CTVA",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "High PE ratio and uncertain growth prospects.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "CSGP",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "High PE ratio suggests overvaluation.  Insufficient data for comprehensive analysis.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "COST",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "High PE ratio and uncertain growth prospects.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "CTRA",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "CRWD",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "High PE ratio and uncertain growth prospects.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "CCI",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "CSX",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "CMI",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "CVS",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "DHR",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "DRI",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "DVA",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "DAY",
+    "recommendation": "SELL",
+    "confidence": 0.8,
+    "rationale": "High PE ratio and lack of dividend yield suggest overvaluation.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "DECK",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "DE",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "DELL",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "DAL",
+    "recommendation": "BUY",
+    "confidence": 0.9,
+    "rationale": "Low PE ratio and strong recovery potential.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "DVN",
+    "recommendation": "BUY",
+    "confidence": 0.9,
+    "rationale": "Low PE ratio and strong sector tailwinds",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "DXCM",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "FANG",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "DLR",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "High PE ratio and uncertain growth prospects in the current economic climate.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "DFS",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "DG",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "DLTR",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "D",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "DPZ",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "DOV",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "DOW",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "DHI",
+    "recommendation": "BUY",
+    "confidence": 0.9,
+    "rationale": "Strong growth and reasonable valuation",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "DTE",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "DUK",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "DD",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "EMN",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "ETN",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "High PE ratio suggests overvaluation.  Insufficient data for comprehensive analysis.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "EBAY",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "ECL",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "EIX",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "EW",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "EA",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "ELV",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "EMR",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "ENPH",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "High PE ratio suggests overvaluation despite potential growth in the solar sector.  More data is needed.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "ETR",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "EOG",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "EPAM",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "EQT",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "High PE ratio and uncertain energy sector outlook.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "EFX",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "EQIX",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "High PE ratio and uncertain growth in a cyclical sector.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "EQR",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "ERIE",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "ESS",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "EL",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "High PE ratio and uncertain growth prospects.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "EG",
+    "recommendation": "BUY",
+    "confidence": 0.9,
+    "rationale": "Low PE ratio suggests undervaluation.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "EVRG",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "ES",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "EXC",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "EXPE",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "EXPD",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "EXR",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "XOM",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "FFIV",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "FDS",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "FICO",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "High PE ratio suggests overvaluation.  Insufficient data on growth and profitability to make a stronger recommendation.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "FAST",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "FRT",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "FDX",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "FIS",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "High PE ratio and uncertain growth.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "FITB",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "FSLR",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "FE",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "FI",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "FMC",
+    "recommendation": "BUY",
+    "confidence": 0.95,
+    "rationale": "Strong growth and reasonable valuation",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "F",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "FTNT",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "FTV",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "FOXA",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "FOX",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "BEN",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "FCX",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "GRMN",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "IT",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "GE",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "GEHC",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "GEV",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "High PE ratio suggests overvaluation.  Insufficient data for comprehensive analysis.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "GEN",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "GNRC",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "GD",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "GIS",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "GM",
+    "recommendation": "BUY",
+    "confidence": 0.9,
+    "rationale": "Low PE ratio suggests undervaluation.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "GPC",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "GILD",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "High PE ratio and uncertain growth.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "GPN",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "GL",
+    "recommendation": "BUY",
+    "confidence": 0.95,
+    "rationale": "Strong growth and reasonable valuation",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "GDDY",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "GS",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "HAL",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "HIG",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "HAS",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "N/A PE ratio and lack of other key metrics prevent a confident assessment.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "HCA",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "DOC",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "HSIC",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "HSY",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "HES",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "HPE",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "HLT",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "HOLX",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "HD",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "HON",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "HRL",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "HST",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "HWM",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "High PE ratio suggests overvaluation.  Insufficient data for comprehensive analysis.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "HPQ",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "HUBB",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "HUM",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "HBAN",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "HII",
+    "recommendation": "BUY",
+    "confidence": 0.9,
+    "rationale": "Strong growth and reasonable valuation",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "IBM",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "IEX",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "IDXX",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "ITW",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "INCY",
+    "recommendation": "SELL",
+    "confidence": 0.6,
+    "rationale": "High PE ratio and lack of dividend yield.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "IR",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "PODD",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "High PE ratio suggests overvaluation.  Insufficient data for comprehensive analysis.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "INTC",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "ICE",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "IFF",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Insufficient data for comprehensive analysis.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "IP",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "IPG",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "INTU",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "ISRG",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "High PE ratio suggests overvaluation despite strong market position.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "IVZ",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Insufficient data for comprehensive analysis",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "INVH",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "High PE ratio suggests overvaluation.  Insufficient data for comprehensive analysis.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "IQV",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "IRM",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "High PE ratio suggests overvaluation.  Insufficient data for comprehensive analysis.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "JBHT",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "JBL",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "JKHY",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "J",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "JNJ",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "JCI",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "JPM",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "JNPR",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "K",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "KVUE",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "KDP",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "KEY",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "High PE ratio and uncertain growth in the current financial climate.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "KEYS",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "KMB",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "KIM",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "KMI",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "KKR",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "KLAC",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "KHC",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "KR",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "LHX",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "LH",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "LRCX",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "LW",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "LVS",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "LDOS",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "LEN",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "LLY",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "High PE ratio and uncertain future growth.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "LIN",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "LYV",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "High PE ratio suggests overvaluation.  Insufficient data for comprehensive analysis.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "LKQ",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "LMT",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "L",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "LOW",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "LULU",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "LYB",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "MTB",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "MPC",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "MKTX",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "MAR",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "MMC",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "MLM",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "MAS",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "MA",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "MTCH",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "MKC",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "MCD",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "MCK",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "MDT",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "MRK",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "META",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "MET",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "MTD",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "MGM",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "MCHP",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "MU",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "High PE ratio and uncertain growth prospects in the semiconductor industry.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "MSFT",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "MAA",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "MRNA",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "High valuation and uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "MHK",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "MOH",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "TAP",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "MDLZ",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "MPWR",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "High PE ratio suggests overvaluation.  Insufficient data for comprehensive analysis.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "MNST",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "MCO",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "MS",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "MOS",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "MSI",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "MSCI",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "NDAQ",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "NTAP",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "NFLX",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "High PE ratio and uncertain growth.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "NEM",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "NWSA",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "NWS",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "High PE ratio suggests overvaluation.  Insufficient data for comprehensive analysis.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "NEE",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "NKE",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "NI",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "NDSN",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "NSC",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "NTRS",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "NOC",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "NCLH",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "NRG",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "NUE",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "NVDA",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "High PE ratio and uncertain future growth.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "NVR",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "NXPI",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "ORLY",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "OXY",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "ODFL",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "OMC",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "ON",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "OKE",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "ORCL",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "OTIS",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "PCAR",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "PKG",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "PLTR",
+    "recommendation": "SELL",
+    "confidence": 0.6,
+    "rationale": "High PE ratio and uncertain growth prospects.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "PANW",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "High PE ratio suggests overvaluation.  More data needed on growth and profitability.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "PARA",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "PH",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "PAYX",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "PAYC",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "PYPL",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "PNR",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "PEP",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "PFE",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "PCG",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "PM",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "PSX",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "PNW",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "PNC",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "POOL",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "PPG",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "PPL",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "PFG",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Insufficient data for comprehensive analysis.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "PG",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "PGR",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "PLD",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "PRU",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "PEG",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "PTC",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "High PE ratio suggests overvaluation.  Insufficient data for comprehensive analysis.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "PSA",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "PHM",
+    "recommendation": "BUY",
+    "confidence": 0.9,
+    "rationale": "Strong growth and reasonable valuation",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "QRVO",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Insufficient data for comprehensive analysis",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "PWR",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "High PE ratio suggests overvaluation.  Insufficient data for comprehensive analysis.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "QCOM",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "DGX",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "RL",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "RJF",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "RTX",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "O",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "REG",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "REGN",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "RF",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "RSG",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "RMD",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "RVTY",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "High PE ratio suggests overvaluation.  Insufficient data for comprehensive analysis.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "ROK",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "ROL",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "ROP",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "High PE ratio suggests overvaluation.  Insufficient data for comprehensive analysis.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "ROST",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "RCL",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "SPGI",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "CRM",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "High PE ratio and uncertain growth prospects.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "SBAC",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "SLB",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "STX",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "SRE",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "NOW",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "High PE ratio and uncertain growth prospects.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "SHW",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "SPG",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "SWKS",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "SJM",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "SW",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "High PE ratio suggests overvaluation.  Insufficient data for comprehensive analysis.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "SNA",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "SOLV",
+    "recommendation": "SELL",
+    "confidence": 0.8,
+    "rationale": "High PE ratio suggests overvaluation.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "SO",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "LUV",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "N/A PE ratio and lack of other key metrics hinder a confident assessment.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "SWK",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Insufficient data for comprehensive analysis",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "SBUX",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "STT",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "STLD",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "STE",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "SYK",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "SMCI",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "SYF",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "SNPS",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "High PE ratio suggests overvaluation.  Insufficient data for comprehensive analysis.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "SYY",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "TMUS",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "TROW",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "TTWO",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Insufficient data for comprehensive analysis.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "TPR",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "TRGP",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "TGT",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "TEL",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "TDY",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "TFX",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "TER",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "TSLA",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "High PE ratio and uncertain growth prospects.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "TXN",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "TPL",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "High PE ratio and limited data.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "TXT",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "TMO",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "TJX",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "TSCO",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "TT",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "TDG",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "High PE ratio suggests overvaluation.  Insufficient data for comprehensive analysis.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "TRV",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "TRMB",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Insufficient data for comprehensive analysis",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "TFC",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Insufficient data for comprehensive analysis",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "TYL",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "High PE ratio suggests overvaluation.  Insufficient data for comprehensive analysis.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "TSN",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "USB",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "UBER",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "High PE ratio and uncertain growth.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "UDR",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "High PE ratio suggests overvaluation.  Insufficient data for comprehensive analysis.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "ULTA",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "UNP",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "UAL",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "UPS",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "URI",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "UNH",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "UHS",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "VLO",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "VTR",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "N/A PE ratio and lack of other key metrics hinder a conclusive recommendation.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "VLTO",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "VRSN",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "VRSK",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "VZ",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "VRTX",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "VTRS",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "N/A PE ratio and lack of other key metrics hinder a confident assessment.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "VICI",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "V",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "VST",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "VMC",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "WRB",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "GWW",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "WAB",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "WBA",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "WMT",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "DIS",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "WBD",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "N/A PE ratio and uncertain growth.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "WM",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "WAT",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "WEC",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "WFC",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "WELL",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "High PE ratio and uncertain growth in a volatile sector.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "WST",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "WDC",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "High PE ratio suggests overvaluation.  Insufficient data for comprehensive analysis.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "WY",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "WMB",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "WTW",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Insufficient data for comprehensive analysis.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "WYNN",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "XEL",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "XYL",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "YUM",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "ZBRA",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "High PE ratio suggests overvaluation.  Insufficient data for comprehensive analysis.",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "ZBH",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
+    "date": "2024-12-05"
+  },
+  {
+    "ticker": "ZTS",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "rationale": "Fair valuation but uncertain growth",
     "date": "2024-12-05"
   }
 ]
