@@ -88,9 +88,6 @@ export default function StockTable({ recommendations = [] }: Props) {
                                         Signal
                                     </th>
                                     <th className="px-8 py-5 text-left text-sm font-medium text-purple-200 uppercase tracking-wider">
-                                        Confidence
-                                    </th>
-                                    <th className="px-8 py-5 text-left text-sm font-medium text-purple-200 uppercase tracking-wider">
                                         Analysis
                                     </th>
                                 </tr>
@@ -124,9 +121,6 @@ export default function StockTable({ recommendations = [] }: Props) {
                                             }`}>
                                                 {stock.recommendation}
                                             </span>
-                                        </td>
-                                        <td className="px-8 py-6 text-purple-200">
-                                            {(stock.confidence * 100).toFixed(1)}%
                                         </td>
                                         <td className="px-8 py-6 text-gray-300">{stock.rationale}</td>
                                     </motion.tr>

@@ -29,50 +29,154 @@ class DataRetrievalAgent:
             temperature=0
         )
         
-        # Prompt to translate decomposed steps into specific API calls
+        # Define available YFinance metrics as class attribute
+        self.AVAILABLE_METRICS = {
+            # Market Data
+            'price': ['currentPrice', 'previousClose', 'open', 'dayLow', 'dayHigh'],
+            'volume': ['volume', 'averageVolume', 'averageVolume10days'],
+            'market_stats': ['marketCap', 'impliedSharesOutstanding', 'sharesOutstanding', 'floatShares'],
+            'moving_averages': ['fiftyDayAverage', 'twoHundredDayAverage'],
+            
+            # Valuation
+            'pe_ratios': ['trailingPE', 'forwardPE', 'trailingPegRatio'],
+            'price_ratios': ['priceToBook', 'priceToSalesTrailing12Months'],
+            'enterprise': ['enterpriseValue', 'enterpriseToRevenue', 'enterpriseToEbitda'],
+            
+            # Financial Performance
+            'margins': ['profitMargins', 'grossMargins', 'operatingMargins', 'ebitdaMargins'],
+            'returns': ['returnOnAssets', 'returnOnEquity'],
+            'growth': ['earningsGrowth', 'revenueGrowth', 'earningsQuarterlyGrowth'],
+            
+            # Income Statement
+            'revenue': ['totalRevenue', 'revenuePerShare'],
+            'earnings': ['trailingEps', 'forwardEps', 'netIncomeToCommon'],
+            'other_income': ['ebitda', 'freeCashflow', 'operatingCashflow'],
+            
+            # Balance Sheet
+            'cash_debt': ['totalCash', 'totalCashPerShare', 'totalDebt'],
+            'ratios': ['quickRatio', 'currentRatio', 'debtToEquity'],
+            'book_value': ['bookValue', 'priceToBook']
+        }
+
         self.translation_prompt = ChatPromptTemplate.from_messages([
             ("system", """You are an expert in translating financial analysis steps into YFinance API calls.
-            Convert the given step into specific YFinance metrics and parameters needed.
             
-            Example Input Step:
-            "Get the quarterly revenue growth rates for the last 4 quarters"
-            
-            Example Output:
-            {{
-                "metrics": ["totalRevenue"],
-                "frequency": "1q",
-                "start_date": "2023-01-01",
-                "end_date": "2023-12-31"
-            }}
-            
-            Return only the JSON object with the required parameters."""),
-            ("user", "{step_description}")
+Available YFinance Metrics:
+{metrics_info}
+
+Task: Convert the given step into specific YFinance parameters.
+Output should be a JSON with:
+- metrics: List of exact YFinance metric names needed
+- tickers: Empty list (will be filled later)
+- frequency: Data frequency if needed (1d, 1wk, 1mo, 1q)
+- start_date: YYYY-MM-DD format if historical data needed
+- end_date: YYYY-MM-DD format if historical data needed
+
+Example:
+Input: "Get quarterly revenue for last 4 quarters"
+Output: {{
+    "metrics": ["totalRevenue"],
+    "tickers": [],
+    "frequency": "1q",
+    "start_date": "2023-01-01",
+    "end_date": "2023-12-31"
+}}"""),
+            ("user", "Step to translate: {step_description}")
         ])
+
+    def _get_metrics_info(self) -> str:
+        """Format available metrics info for prompt"""
+        info = []
+        for category, metrics in self.AVAILABLE_METRICS.items():
+            info.append(f"{category.replace('_', ' ').title()}:")
+            info.append(", ".join(metrics))
+            info.append("")
+        return "\n".join(info)
 
     async def _translate_step_to_request(self, step: Dict) -> DataRequest:
         """Translate a decomposition step into specific YFinance parameters"""
-        chain = self.translation_prompt | self.llm | DataRequest
-        
-        result = await chain.ainvoke({
-            "step_description": step["description"]
-        })
-        
-        return result
+        try:
+            # Prepare prompt with metrics info
+            formatted_prompt = self.translation_prompt.format_messages(
+                metrics_info=self._get_metrics_info(),
+                step_description=step["description"]
+            )
+            
+            # Get LLM response using ainvoke
+            response = await self.llm.ainvoke(formatted_prompt)
+            
+            # Extract content from response
+            content = response.content if hasattr(response, 'content') else str(response)
+            print("LLM response content:", content)
+            
+            # Parse JSON from response
+            if '```json' in content:
+                content = content.split('```json')[1].split('```')[0]
+            import json
+            data = json.loads(content.strip())
+            # print("Parsed data:", data)
+            
+            # Validate metrics against available ones
+            all_available_metrics = [
+                metric for metrics in self.AVAILABLE_METRICS.values()
+                for metric in metrics
+            ]
+            data['metrics'] = [
+                metric for metric in data.get('metrics', [])
+                if metric in all_available_metrics
+            ]
+            
+            # If no valid metrics found, use default
+            if not data['metrics']:
+                data['metrics'] = ['currentPrice']
+            
+            # Handle tickers
+            if 'tickers' not in data:
+                data['tickers'] = []
+            if 'tickers' in step:
+                data['tickers'].extend(step['tickers'])
+            
+            # Validate frequency
+            if 'frequency' in data and data['frequency'] not in ['1d', '1wk', '1mo', '1q']:
+                data['frequency'] = '1d'
+            
+            return DataRequest(**data)
+            
+        except Exception as e:
+            print(f"Error in translation: {e}")
+            print(f"Step was: {step}")
+            # Return a default request with minimal data
+            return DataRequest(
+                metrics=['currentPrice'],
+                tickers=step.get('tickers', []),
+                start_date=None,
+                end_date=None,
+                frequency=None
+            )
 
     def _fetch_fundamental_data(self, tickers: List[str], metrics: List[str]) -> pd.DataFrame:
-        """Fetch fundamental data for given tickers and metrics"""
+        """Fetch fundamental data ensuring only valid metrics"""
+        all_available_metrics = [
+            metric for metrics in self.AVAILABLE_METRICS.values()
+            for metric in metrics
+        ]
+        print("all_available_metrics", all_available_metrics)
+        valid_metrics = [m for m in metrics if m in all_available_metrics]
+        print("valid_metrics", valid_metrics)
         data = []
         for ticker in tickers:
             try:
                 stock = yf.Ticker(ticker)
                 info = stock.info
+                print("info", info)
                 row = {"Ticker": ticker}
-                for metric in metrics:
+                for metric in valid_metrics:
                     row[metric] = info.get(metric, None)
                 data.append(row)
             except Exception as e:
                 print(f"Error fetching data for {ticker}: {e}")
                 continue
+        
         return pd.DataFrame(data)
 
     def _fetch_historical_data(self, tickers: List[str], start_date: str, 
@@ -100,8 +204,9 @@ class DataRetrievalAgent:
         """Execute a single step from the query decomposition"""
         try:
             # Translate the step into specific API parameters
+            print("****Translating step to request...")
             request = await self._translate_step_to_request(step)
-            
+            print("****Translated Request", request)
             # Initialize result dictionary
             result = {
                 "step_number": step["step_number"],
@@ -110,28 +215,31 @@ class DataRetrievalAgent:
                 "error": None
             }
             
-            # Handle fundamental data
-            if not (request.start_date and request.end_date):
-                df = self._fetch_fundamental_data(request.tickers, request.metrics)
-                result["data"] = df
-                
-            # Handle historical data
-            else:
-                data = self._fetch_historical_data(
-                    request.tickers,
-                    request.start_date,
-                    request.end_date,
-                    request.frequency or "1d"
+            # Determine if historical data is needed based on start_date and end_date
+            if request.start_date and request.end_date:
+                print(f"Fetching historical data for {request.tickers} from {request.start_date} to {request.end_date}")
+                # Convert quarterly frequency to monthly since YFinance doesn't support quarterly
+                interval = '1mo' if request.frequency == '1q' else (request.frequency or '1d')
+                historical_data = self._fetch_historical_data(
+                    request.tickers, 
+                    request.start_date, 
+                    request.end_date, 
+                    interval
                 )
                 
-                # Calculate growth rates if needed
-                if any(metric.endswith('Growth') for metric in request.metrics):
-                    for ticker, df in data.items():
-                        base_metric = next(m for m in request.metrics if not m.endswith('Growth'))
-                        data[ticker] = self._calculate_growth_rates(df, base_metric)
+                # If quarterly data was requested, resample the monthly data to quarterly
+                if request.frequency == '1q':
+                    for ticker in historical_data:
+                        historical_data[ticker] = historical_data[ticker].resample('Q').last()
                 
-                result["data"] = data
-                
+                result["data"] = historical_data
+            else:
+                # Handle fundamental data for current snapshot
+                print(f"Fetching fundamental data...{request.tickers} {request.metrics}")
+                df = self._fetch_fundamental_data(request.tickers, request.metrics)
+                result["data"] = df
+             
+            print("****Result", result)                   
             return result
             
         except Exception as e:
@@ -153,6 +261,7 @@ class DataRetrievalAgent:
             print(f"Assigned to: {agent_type.value} agent ({reason})")
             
             if agent_type == AgentType.DATA_RETRIEVAL:
+                print(f"Executing step by data retrieval agent...{step}")
                 result = await self.execute_step(step)
             else:
                 result = {

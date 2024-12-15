@@ -93,7 +93,7 @@ When breaking down queries:
 2. Specify time periods needed (e.g., last quarter, TTM, 5 years)
 3. Define the frequency of data needed (daily, quarterly, yearly)
 4. Consider any calculations or comparisons needed
-5. if the data ios retrievd already, do not retrieve it again and use the data to do the next steps to answer the query of the user
+5. if the data is retrievd already, do not retrieve it again and use the data to do the next steps to answer the query of the user
 
 {format_instructions}"""),
             ("user", "{query}")
