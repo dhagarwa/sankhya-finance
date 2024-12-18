@@ -172,6 +172,7 @@ Output: {{
                 row = {"Ticker": ticker}
                 for metric in valid_metrics:
                     row[metric] = info.get(metric, None)
+                print("row", row)
                 data.append(row)
             except Exception as e:
                 print(f"Error fetching data for {ticker}: {e}")
