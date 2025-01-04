@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { transform } from '@babel/standalone';
 import {
   ResponsiveContainer,
   BarChart,
@@ -10,8 +9,11 @@ import {
   YAxis,
   Tooltip,
   Legend,
-  CartesianGrid
+  CartesianGrid,
+  ScatterChart,
+  Scatter
 } from 'recharts';
+import { transform } from '@babel/standalone';
 
 interface DynamicVisualizationProps {
   visualizationCode: string;
@@ -25,22 +27,44 @@ const DynamicVisualization: React.FC<DynamicVisualizationProps> = ({
   const [error, setError] = useState<string | null>(null);
   const [RenderedComponent, setRenderedComponent] = useState<React.FC | null>(null);
 
+  const transformData = (record: Record<string, any[]>): any[] => {
+    const keys = Object.keys(record);
+    if (keys.length === 0) return [];
+    
+    return record[keys[0]].map((_, index) => {
+      const item: Record<string, any> = {};
+      keys.forEach(key => {
+        item[key] = record[key][index];
+      });
+      return item;
+    });
+  };
+
   useEffect(() => {
     if (!visualizationCode) return;
 
     try {
-      // Clean the code - remove markdown and imports
+      // Clean the code
       const cleanCode = visualizationCode
         .replace(/```[^`]*```/g, (match) => match.replace(/```typescript|```jsx|```/g, ''))
         .replace(/import.*?;?\n/g, '')
         .replace(/export default/g, '')
         .trim();
 
-      // Transform the code
+      console.log('Clean code:', cleanCode);
+
+      // Transform JSX to JavaScript using Babel
       const transformedCode = transform(cleanCode, {
-        presets: ['react', 'typescript'],
-        filename: 'dynamic.tsx'
+        presets: [['react', { runtime: 'classic' }]],
+        filename: 'dynamic.jsx',
+        configFile: false,
+        babelrc: false
       }).code;
+
+      console.log('Transformed code:', transformedCode);
+
+      const transformedData = transformData(data);
+      console.log('Transformed data:', transformedData);
 
       // Create the component factory
       const componentFactory = new Function(
@@ -55,11 +79,14 @@ const DynamicVisualization: React.FC<DynamicVisualizationProps> = ({
         'Tooltip',
         'Legend',
         'CartesianGrid',
+        'ScatterChart',
+        'Scatter',
         'chartData',
         `
+        "use strict";
         const data = chartData;
         ${transformedCode}
-        return typeof Chart !== 'undefined' ? Chart : CompanyGrowthChart;
+        return Chart;
         `
       );
 
@@ -76,8 +103,14 @@ const DynamicVisualization: React.FC<DynamicVisualizationProps> = ({
         Tooltip,
         Legend,
         CartesianGrid,
-        data
+        ScatterChart,
+        Scatter,
+        transformedData
       );
+
+      if (!Component) {
+        throw new Error('Component creation failed');
+      }
 
       setRenderedComponent(() => Component);
       setError(null);
