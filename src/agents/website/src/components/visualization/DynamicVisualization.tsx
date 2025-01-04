@@ -1,97 +1,113 @@
 import React, { useEffect, useState } from 'react';
-// We will use Babel standalone to transform the string code into runnable JS
 import { transform } from '@babel/standalone';
-
-// Recharts (or any other libraries you expect the server code to use)
 import {
+  ResponsiveContainer,
   BarChart,
   Bar,
+  LineChart,
+  Line,
   XAxis,
   YAxis,
   Tooltip,
   Legend,
-  // Add any other Recharts components as needed
+  CartesianGrid
 } from 'recharts';
 
 interface DynamicVisualizationProps {
-  visualizationCode: string; // The code string returned by your API, e.g. the "```typescript ...```" snippet
-  data: any;                // The JSON data returned by your API
+  visualizationCode: string;
+  data: Record<string, any[]>;
 }
 
 const DynamicVisualization: React.FC<DynamicVisualizationProps> = ({
   visualizationCode,
   data
 }) => {
-  const [RenderedComponent, setRenderedComponent] = useState<React.FC | null>(
-    null
-  );
+  const [error, setError] = useState<string | null>(null);
+  const [RenderedComponent, setRenderedComponent] = useState<React.FC | null>(null);
 
   useEffect(() => {
     if (!visualizationCode) return;
 
     try {
-      // 1. Strip out possible markdown fences (```typescript ...```) to get raw TS/JS code
-      const codeWithoutFences = visualizationCode.replace(/```[^`]*```/g, (match) => {
-        // Attempt to remove just the triple backticks. If your server always returns the code
-        // in a consistent format, you can customize logic here as needed.
-        return match.replace(/```typescript|```js|```/g, '');
-      });
+      // Clean the code - remove markdown and imports
+      const cleanCode = visualizationCode
+        .replace(/```[^`]*```/g, (match) => match.replace(/```typescript|```jsx|```/g, ''))
+        .replace(/import.*?;?\n/g, '')
+        .replace(/export default/g, '')
+        .trim();
 
-      // 2. Transform code from TypeScript/JSX -> plain JS that can run in the browser
-      // Using presets: ['typescript', 'react'] if the code is indeed TypeScript
-      // If your code is plain JavaScript/JSX, you can omit 'typescript'.
-      const transformedCode = transform(codeWithoutFences, {
-        presets: ['typescript', 'react'],
-        filename: 'file.tsx', // or 'file.tsx'
+      // Transform the code
+      const transformedCode = transform(cleanCode, {
+        presets: ['react', 'typescript'],
+        filename: 'dynamic.tsx'
       }).code;
-      
 
-      // 3. Create a new Function and return the default or named component
-      //    We'll assume the server code defines a component called "CompanyGrowth"
-      //    and exports it as default or returns it at the end.
-      //    Adapt the variable name to match the component name from your server code.
-      //
-      //    We also inject references to React, Recharts, and "data" in the arguments
-      //    so that the server code can reference them if needed.
+      // Create the component factory
       const componentFactory = new Function(
         'React',
+        'ResponsiveContainer',
         'BarChart',
         'Bar',
+        'LineChart',
+        'Line',
         'XAxis',
         'YAxis',
         'Tooltip',
         'Legend',
-        'data',
-        `${transformedCode}\n\nreturn CompanyGrowth;`
+        'CartesianGrid',
+        'chartData',
+        `
+        const data = chartData;
+        ${transformedCode}
+        return typeof Chart !== 'undefined' ? Chart : CompanyGrowthChart;
+        `
       );
 
-      // 4. Invoke the factory to retrieve the component
-      const ComponentFromServer = componentFactory(
+      // Execute the factory with dependencies
+      const Component = componentFactory(
         React,
+        ResponsiveContainer,
         BarChart,
         Bar,
+        LineChart,
+        Line,
         XAxis,
         YAxis,
         Tooltip,
         Legend,
+        CartesianGrid,
         data
       );
 
-      // 5. Set the component to local state so we can render it
-      setRenderedComponent(() => ComponentFromServer);
-    } catch (error) {
-      console.error('Error dynamically generating component:', error);
-      setRenderedComponent(null);
+      setRenderedComponent(() => Component);
+      setError(null);
+    } catch (err) {
+      console.error('Error creating visualization:', err);
+      setError(`Failed to create visualization: ${err.message}`);
     }
   }, [visualizationCode, data]);
 
-  // If we haven't successfully created a component, show nothing or a fallback
-  if (!RenderedComponent) {
-    return null;
+  if (error) {
+    return (
+      <div className="p-4 bg-red-500/10 border border-red-500/20 rounded-xl text-red-400">
+        {error}
+      </div>
+    );
   }
 
-  // Render the dynamically-created component
-  return <RenderedComponent />;
+  if (!RenderedComponent) {
+    return (
+      <div className="p-4 text-purple-200 animate-pulse">
+        Loading visualization...
+      </div>
+    );
+  }
+
+  return (
+    <div className="w-full h-[500px] bg-white/5 backdrop-blur-md rounded-xl p-4">
+      <RenderedComponent />
+    </div>
+  );
 };
 
 export default DynamicVisualization;

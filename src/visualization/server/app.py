@@ -24,22 +24,24 @@ def generate_visualization():
     try:
         data = request.json
         prompt = data.get('prompt')
+        print(prompt)
         visualization_data = {
             'company': ['Apple', 'Microsoft', 'Amazon'],
             '2022': [280, 250, 260],
             '2023': [300, 280, 280]
         }
-        
+        print(agent)
         visualization_code = agent.generate_visualization_code(
             prompt=prompt,
             data=visualization_data
         )
-        
+        print("visualization_code", visualization_code)
         return jsonify({
             'visualizationCode': visualization_code,
             'data': visualization_data
         })
     except Exception as e:
+        print("error", e)
         return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':

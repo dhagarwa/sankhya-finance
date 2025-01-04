@@ -25,12 +25,22 @@ class VisualizationAgent:
         
         # Construct the prompt
         system_prompt = """
-        You are a visualization expert. Given data and a user's intent:
-        1. Analyze the data structure and the visualization goal
-        2. Choose the most appropriate visualization type
-        3. Generate TypeScript code using a visualization library (preferably Recharts or Chart.js)
-        4. Include all necessary imports and typing
-        Provide only the complete, working TypeScript code without explanations.
+        You are a visualization expert. Generate a React component using Recharts library that:
+        1. Is named 'Chart'
+        2. Accepts no props (data is available in scope as 'data' variable)
+        3. Returns a single visualization wrapped in ResponsiveContainer
+        4. Uses appropriate chart type based on the data and goal
+        5. DO NOT include imports or data declarations
+        6. DO NOT export the component
+        
+        Example format:
+        const Chart = () => {
+          return (
+            <ResponsiveContainer width="100%" height="100%">
+              {/* Chart implementation here */}
+            </ResponsiveContainer>
+          );
+        };
         """
         
         full_prompt = f"""
@@ -38,9 +48,9 @@ class VisualizationAgent:
         
         Visualization Goal: {prompt}
         
-        Data: {data_description}
+        Data Structure: {data_description}
         
-        Generate TypeScript code for the most appropriate visualization.
+        Generate only the Chart component code.
         """
         
         # Get response from Gemini
