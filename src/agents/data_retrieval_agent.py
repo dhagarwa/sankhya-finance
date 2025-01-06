@@ -6,7 +6,10 @@ import yfinance as yf
 import pandas as pd
 from datetime import datetime, timedelta
 import os
-from .step_classifier import StepClassifier, AgentType
+import sys
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../../")))
+
+from src.agents.step_classifier import StepClassifier, AgentType
 
 class DataRequest(BaseModel):
     """Schema for translating decomposed steps into yfinance API calls"""
@@ -83,6 +86,33 @@ Output: {{
 }}"""),
             ("user", "Step to translate: {step_description}")
         ])
+    def _fetch_live_data(self, tickers: List[str], metrics: List[str]) -> Dict[str, Any]:
+        """Fetch live/real-time data for the given tickers."""
+        try:
+            data = []
+            for ticker in tickers:
+                stock = yf.Ticker(ticker)
+                info = stock.info
+                row = {"Ticker": ticker}
+                for metric in metrics:
+                    row[metric] = info.get(metric, None)
+                data.append(row)
+            return {"data": data, "error": None}
+        except Exception as e:
+            return {"data": None, "error": str(e)}
+
+    def _fetch_historical_data(self, tickers: List[str], start_date: str, end_date: str, frequency: str) -> Dict[str, Any]:
+        """Fetch historical data for the given tickers."""
+        try:
+            data = {}
+            for ticker in tickers:
+                stock = yf.Ticker(ticker)
+                df = stock.history(start=start_date, end=end_date, interval=frequency)
+                data[ticker] = df
+            return {"data": data, "error": None}
+        except Exception as e:
+            return {"data": None, "error": str(e)}
+
 
     def _get_metrics_info(self) -> str:
         """Format available metrics info for prompt"""
