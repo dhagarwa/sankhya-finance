@@ -43,8 +43,9 @@ A smart toolkit for financial stock analysis. No convoluted data, the right data
    
    Backend:
    ```bash
-   # In the root directory in the visualization/server directory
-   python app.py
+   # In the root directory, run the server
+   chmod +x run_server.sh
+   ./run_server.sh
    ```
 
    Frontend:
