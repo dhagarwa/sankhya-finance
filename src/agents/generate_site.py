@@ -183,38 +183,6 @@ export default function Disclaimer() {
         print("To start development server:")
         print(f"cd {self.root_dir} && npm run dev")
 
-    async def update_website_data(self):
-        """Update only the recommendations data in the website"""
-        print("\nUpdating Sankhya AI website data...")
-        
-        # Get recommendations data
-        analyst = StockAnalystAgent()
-        recommendations_df = await analyst.analyze_sp500()
-        
-        # Save recommendations data
-        data = recommendations_df.to_dict('records')
-        data_dir = self.root_dir / "src/data"
-        data_dir.mkdir(exist_ok=True)
-        
-        # Convert date objects to string format
-        def serialize_data(data):
-            # Iterate over each item in the list
-            for item in data:
-                # Serialize each item (which is a dictionary)
-                for key, value in item.items():
-                    if isinstance(value, date):
-                        item[key] = value.isoformat()  # Convert date to string
-            return data  # Return the modified list
-        
-        with open(data_dir / "recommendations.json", "w") as f:
-            json.dump(serialize_data(data), f, indent=2)
-        
-        print(f"\nWebsite data updated successfully at: {self.root_dir.absolute()}")
-
 if __name__ == "__main__":
     generator = WebsiteGenerator()
-    # Comment out full website generation
-    # asyncio.run(generator.generate_website())
-    
-    # Only update recommendations data
-    asyncio.run(generator.update_website_data())
+    asyncio.run(generator.generate_website())

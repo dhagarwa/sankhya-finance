@@ -64,11 +64,9 @@ async def main():
     print("="*40)
     
     test_queries = [
+        "Compare the revenue growth rates of AAPL and MSFT over the last 4 quarters",
         "What is the current PE ratio and market cap of NVDA?",
-        # "What QoQ quaterly revenue growth rate of NVDA for last 4 quarters?",
-        #"Compare the revenue growth rates of AAPL and MSFT over the last 4 quarters",
-        #"What is the current PE ratio and market cap of NVDA?",
-        #"Show me the dividend yield trends for PG over the last 5 years"
+        "Show me the dividend yield trends for PG over the last 5 years"
     ]
     
     print(f"\nProcessing {len(test_queries)} test queries...")

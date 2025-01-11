@@ -107,6 +107,7 @@ class StockAnalystAgent:
         """Analyze all S&P 500 stocks with rate limiting"""
         # Get S&P 500 tickers
         tickers = get_sp500_tickers()
+        tickers = tickers[:15]
         # Fetch fundamentals for all stocks
         fundamentals_df = fetch_fundamentals(tickers)
         
