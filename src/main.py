@@ -1,4 +1,10 @@
 import asyncio
+from dotenv import load_dotenv
+import os
+
+# Load environment variables at startup
+load_dotenv()
+
 from agents.query_decomposer import QueryDecomposer
 from agents.data_retrieval_agent import DataRetrievalAgent
 from agents.visualization_agent import VisualizationAgent
@@ -79,8 +85,9 @@ async def main():
     
     test_queries = [
         # "Compare the revenue growth rates of AAPL and MSFT over the last 4 quarters",
-        "What is the current PE ratio and market cap of NVDA?",
-        # "Show me the dividend yield trends for PG over the last 5 years"
+        # "What is the current PE ratio and market cap of NVDA?",
+        # "Show me the dividend yield trends for PG over the last 5 years",
+        "Show me the revenue of MSFT over the last 4 quarters"
     ]
     
     print(f"\nProcessing {len(test_queries)} test queries...")

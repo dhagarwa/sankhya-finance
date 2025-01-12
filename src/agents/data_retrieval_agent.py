@@ -1,12 +1,13 @@
 from typing import Dict, List, Any, Optional
 from langchain_core.prompts import ChatPromptTemplate
-from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_openai import ChatOpenAI
 from pydantic import BaseModel, Field
 import yfinance as yf
 import pandas as pd
 from datetime import datetime, timedelta
 import os
 import sys
+from openai import OpenAI
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../../")))
 
 from src.agents.step_classifier import StepClassifier, AgentType
@@ -26,10 +27,11 @@ class DataRetrievalAgent:
     """
     
     def __init__(self):
-        self.llm = ChatGoogleGenerativeAI(
-            model="gemini-1.5-flash-latest",
-            google_api_key=os.getenv("GOOGLE_API_KEY"),
-            temperature=0
+
+        self.llm = ChatOpenAI(
+            model="gpt-4-0125-preview",
+            temperature=0,
+            api_key=os.getenv("OPENAI_API_KEY")
         )
         
         # Define available YFinance metrics as class attribute
