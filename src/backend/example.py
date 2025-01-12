@@ -1,12 +1,9 @@
 import os
-from dotenv import load_dotenv
 from src.agents.visualization_agent import VisualizationAgent
 
-# Load environment variables
-load_dotenv()
 
 # Initialize the agent with Gemini key
-agent = VisualizationAgent(api_key=os.getenv('GOOGLE_API_KEY'))
+agent = VisualizationAgent()
 
 # Example usage
 data = {

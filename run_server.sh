@@ -1,3 +1,3 @@
 #!/bin/bash
 export PYTHONPATH="${PYTHONPATH}:${PWD}"
-python src/visualization/server/app.py 
+python src/backend/server/app.py 
