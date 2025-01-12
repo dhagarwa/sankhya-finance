@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import os
 from dotenv import load_dotenv
-from src.visualization.visualization_agent import VisualizationAgent
+from src.agents.visualization_agent import VisualizationAgent
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
@@ -49,7 +49,7 @@ if __name__ == '__main__':
     load_dotenv()
     
     # Initialize the visualization agent
-    agent = VisualizationAgent(api_key=os.getenv('GOOGLE_API_KEY'))
+    agent = VisualizationAgent()
     
     # Run with debug mode and allow all origins in development
     app.run(debug=True) 

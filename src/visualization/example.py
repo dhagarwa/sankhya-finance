@@ -1,6 +1,6 @@
 import os
 from dotenv import load_dotenv
-from visualization_agent import VisualizationAgent
+from src.agents.visualization_agent import VisualizationAgent
 
 # Load environment variables
 load_dotenv()

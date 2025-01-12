@@ -1,10 +1,11 @@
 from typing import Union, Dict, Any
 import pandas as pd
 import google.generativeai as genai
+import os
 
 class VisualizationAgent:
-    def __init__(self, api_key: str):
-        genai.configure(api_key=api_key)
+    def __init__(self):
+        genai.configure(api_key=os.getenv('GOOGLE_API_KEY'))
         self.model = genai.GenerativeModel('gemini-pro')
     
     def _format_data(self, data: Union[pd.DataFrame, str, Dict[str, Any]]) -> str:
