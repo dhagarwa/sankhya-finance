@@ -183,9 +183,21 @@ Based on the user's query "{original_query}", intelligently select and structure
             
             formatted_json_str = response.choices[0].message.content.strip()
             
+            # Debug logging
+            print(f"🔍 LLM Response Debug:")
+            print(f"   Response length: {len(formatted_json_str)} chars")
+            print(f"   Response preview: '{formatted_json_str[:100]}...'")
+            
+            # Check for empty response
+            if not formatted_json_str:
+                print(f"❌ Empty response from OpenAI API")
+                return self._create_fallback_structure(raw_output, original_query)
+            
             # Parse and validate the JSON
             try:
-                structured_output = json.loads(formatted_json_str)
+                # Clean JSON response (remove markdown code blocks if present)
+                cleaned_json = self._clean_json_response(formatted_json_str)
+                structured_output = json.loads(cleaned_json)
                 
                 # Add timestamp and completion status
                 structured_output["timestamp"] = datetime.now().isoformat()
@@ -196,7 +208,9 @@ Based on the user's query "{original_query}", intelligently select and structure
                 
             except json.JSONDecodeError as e:
                 print(f"❌ Invalid JSON from LLM formatter: {e}")
-                print(f"Raw response: {formatted_json_str[:500]}...")
+                print(f"Raw response length: {len(formatted_json_str)}")
+                print(f"Raw response preview: '{formatted_json_str[:200]}...'")
+                print(f"Raw response ending: '...{formatted_json_str[-100:]}'")
                 
                 # Fallback to basic structure
                 return self._create_fallback_structure(raw_output, original_query)
@@ -279,8 +293,20 @@ Focus on creating the most appropriate visualization for this specific financial
             
             typescript_response = response.choices[0].message.content.strip()
             
+            # Debug logging for TypeScript generation
+            print(f"🔍 TypeScript Response Debug:")
+            print(f"   Response length: {len(typescript_response)} chars")
+            print(f"   Response preview: '{typescript_response[:100]}...'")
+            
+            # Check for empty response
+            if not typescript_response:
+                print(f"❌ Empty response from OpenAI API (TypeScript generation)")
+                return self._create_fallback_typescript()
+            
             try:
-                typescript_data = json.loads(typescript_response)
+                # Clean JSON response (remove markdown code blocks if present)
+                cleaned_typescript = self._clean_json_response(typescript_response)
+                typescript_data = json.loads(cleaned_typescript)
                 
                 # Add metadata
                 typescript_data["generated_at"] = datetime.now().isoformat()
@@ -291,7 +317,9 @@ Focus on creating the most appropriate visualization for this specific financial
                 
             except json.JSONDecodeError as e:
                 print(f"❌ Invalid JSON from TypeScript generator: {e}")
-                print(f"Raw response: {typescript_response[:500]}...")
+                print(f"TypeScript response length: {len(typescript_response)}")
+                print(f"TypeScript response preview: '{typescript_response[:200]}...'")
+                print(f"TypeScript response ending: '...{typescript_response[-100:]}'")
                 
                 return self._create_fallback_typescript()
                 
@@ -354,6 +382,8 @@ export default FinancialAnalysisDisplay;
     def _prepare_data_context(self, step_data: Dict[str, Any]) -> Dict[str, Any]:
         """Prepare the raw step data for LLM consumption"""
         cleaned_data = {}
+        total_size = 0
+        max_context_size = 8000  # Conservative limit for context
         
         for step_id, step_result in step_data.items():
             if step_result is not None:
@@ -368,7 +398,17 @@ export default FinancialAnalysisDisplay;
                                 cleaned_step[key] = f"<Large data structure with {len(value) if isinstance(value, (list, dict)) else 'complex'} items>"
                             else:
                                 cleaned_step[key] = value
-                    cleaned_data[step_id] = cleaned_step
+                    
+                    # Check total size and truncate if needed
+                    step_str = json.dumps(cleaned_step, default=str)
+                    if total_size + len(step_str) > max_context_size:
+                        # Truncate this step's data
+                        cleaned_data[step_id] = {"_truncated": f"Data truncated - too large for context (original size: {len(step_str)} chars)"}
+                        print(f"⚠️  Truncated {step_id} data to prevent context overflow")
+                    else:
+                        cleaned_data[step_id] = cleaned_step
+                        total_size += len(step_str)
+                        
                 else:
                     # For non-dict results, include directly
                     result_str = str(step_result)
@@ -376,8 +416,25 @@ export default FinancialAnalysisDisplay;
                         cleaned_data[step_id] = result_str[:500] + "..."
                     else:
                         cleaned_data[step_id] = step_result
+                    total_size += len(result_str)
         
+        print(f"📊 Context size: {total_size} chars (limit: {max_context_size})")
         return cleaned_data
+    
+    def _clean_json_response(self, response: str) -> str:
+        """Clean JSON response by removing markdown code blocks and extra whitespace."""
+        response = response.strip()
+        
+        # Remove markdown code blocks
+        if response.startswith('```json'):
+            response = response[7:]  # Remove ```json
+        elif response.startswith('```'):
+            response = response[3:]   # Remove ```
+            
+        if response.endswith('```'):
+            response = response[:-3]  # Remove closing ```
+            
+        return response.strip()
     
     def _create_fallback_structure(self, raw_output: str, original_query: str) -> Dict[str, Any]:
         """Create a basic fallback structure if LLM formatting fails"""

@@ -1,0 +1,138 @@
+{
+  "summary": "Apple Inc. shows strong financial performance with high profitability and cash flow, but faces potential liquidity concerns due to its reliance on debt financing.",
+  "content_blocks": [
+    {
+      "type": "metric",
+      "title": "Current Stock Price",
+      "data": {
+        "value": "$213.88 USD",
+        "label": "Current stock price of Apple Inc.",
+        "trend": "neutral",
+        "context": "Reflects the market valuation as of the last update."
+      }
+    },
+    {
+      "type": "metric",
+      "title": "Market Capitalization",
+      "data": {
+        "value": "$3.19 trillion USD",
+        "label": "Total market value of Apple's outstanding shares",
+        "trend": "up",
+        "context": "Indicates Apple's significant market presence."
+      }
+    },
+    {
+      "type": "table",
+      "title": "Key Financial Metrics for FY 2024",
+      "data": {
+        "headers": [
+          "Metric",
+          "Value (in billions USD)",
+          "Context"
+        ],
+        "rows": [
+          [
+            "Total Revenue",
+            "$391.04",
+            "Total income from operations."
+          ],
+          [
+            "Net Income",
+            "$93.74",
+            "Profit after all expenses."
+          ],
+          [
+            "Total Assets",
+            "$364.98",
+            "Includes cash, inventory, property, and investments."
+          ],
+          [
+            "Total Liabilities",
+            "$308.03",
+            "Financial obligations including debt."
+          ],
+          [
+            "Operating Cash Flow",
+            "$118.25",
+            "Cash generated from core operations."
+          ]
+        ],
+        "highlight_column": 1,
+        "sort_by": "Value (in billions USD)"
+      }
+    },
+    {
+      "type": "chart",
+      "title": "Profitability Margins",
+      "data": {
+        "chart_type": "bar",
+        "x_axis_label": "Margin Type",
+        "y_axis_label": "Percentage",
+        "datasets": [
+          {
+            "name": "Profit Margins",
+            "color": "#3498db",
+            "data": [
+              {
+                "x": "Gross Margin",
+                "y": 46.2
+              },
+              {
+                "x": "Operating Margin",
+                "y": 31.5
+              },
+              {
+                "x": "Net Profit Margin",
+                "y": 24.0
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "type": "insight",
+      "title": "Liquidity Concerns",
+      "data": {
+        "content": "Apple's current ratio below 1 suggests potential liquidity issues, but strong operating cash flow may mitigate these concerns.",
+        "importance": "high",
+        "category": "risk"
+      }
+    }
+  ],
+  "key_insights": [
+    "Apple's profitability is robust with high margins across gross, operating, and net profit.",
+    "The current ratio indicates potential liquidity challenges, though mitigated by strong cash flow.",
+    "High debt-to-equity ratio suggests reliance on debt, increasing financial risk."
+  ],
+  "recommendations": [
+    "Monitor liquidity closely and manage short-term obligations effectively.",
+    "Consider strategies to reduce financial leverage to mitigate risk."
+  ],
+  "metadata": {
+    "query_type": "financial_metrics",
+    "companies_analyzed": [
+      "AAPL"
+    ],
+    "time_period": "Q4 2024",
+    "confidence": "high"
+  },
+  "timestamp": "2025-07-27T20:30:01.801710",
+  "query_completed": true,
+  "formatting_version": "llm_v1",
+  "typescript_component": {
+    "component_code": "// Complete TypeScript React component code here\nimport React from 'react';\nimport {\n  LineChart,\n  Line,\n  XAxis,\n  YAxis,\n  CartesianGrid,\n  Tooltip,\n  ResponsiveContainer\n} from 'recharts';\nimport { TrendingUp, TrendingDown, DollarSign, BarChart3, Info } from 'lucide-react';\n\ninterface Props {\n  data: FinancialData;\n}\n\ninterface FinancialData {\n  ticker: string;\n  currentPrice: number;\n  currency: string;\n  marketCap: number;\n  lastUpdate: string;\n  financialMetrics: FinancialMetrics;\n  profitabilityAnalysis: ProfitabilityAnalysis;\n  liquidityAndSolvency: LiquidityAndSolvency;\n  cashFlowAnalysis: CashFlowAnalysis;\n}\n\ninterface FinancialMetrics {\n  totalRevenue: number;\n  netIncome: number;\n  totalAssets: number;\n  totalLiabilities: number;\n  operatingCashFlow: number;\n}\n\ninterface ProfitabilityAnalysis {\n  grossProfit: number;\n  grossMargin: number;\n  operatingIncome: number;\n  operatingMargin: number;\n  netProfitMargin: number;\n}\n\ninterface LiquidityAndSolvency {\n  currentRatio: number;\n  currentAssets: number;\n  currentLiabilities: number;\n  debtToEquityRatio: number;\n  totalDebt: number;\n  stockholdersEquity: number;\n}\n\ninterface CashFlowAnalysis {\n  freeCashFlow: number;\n  cashFlowFromFinancing: number;\n  cashFlowFromInvesting: number;\n}\n\nconst FinancialAnalysisDisplay: React.FC<Props> = ({ data }) => {\n  const {\n    ticker,\n    currentPrice,\n    currency,\n    marketCap,\n    lastUpdate,\n    financialMetrics,\n    profitabilityAnalysis,\n    liquidityAndSolvency,\n    cashFlowAnalysis\n  } = data;\n\n  return (\n    <div className=\"p-4 bg-white shadow-md rounded-lg\">\n      <div className=\"flex justify-between items-center mb-4\">\n        <h1 className=\"text-2xl font-bold\">Financial Analysis: {ticker}</h1>\n        <span className=\"text-sm text-gray-500\">Last Update: {new Date(lastUpdate).toLocaleDateString()}</span>\n      </div>\n      <div className=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6\">\n        <div className=\"p-4 bg-blue-100 rounded-lg flex items-center\">\n          <DollarSign className=\"text-blue-500 mr-2\" />\n          <div>\n            <h2 className=\"text-lg font-semibold\">Current Price</h2>\n            <p className=\"text-xl\">{currency} {currentPrice.toFixed(2)}</p>\n          </div>\n        </div>\n        <div className=\"p-4 bg-green-100 rounded-lg flex items-center\">\n          <TrendingUp className=\"text-green-500 mr-2\" />\n          <div>\n            <h2 className=\"text-lg font-semibold\">Market Cap</h2>\n            <p className=\"text-xl\">{(marketCap / 1e12).toFixed(2)} Trillion {currency}</p>\n          </div>\n        </div>\n        <div className=\"p-4 bg-yellow-100 rounded-lg flex items-center\">\n          <BarChart3 className=\"text-yellow-500 mr-2\" />\n          <div>\n            <h2 className=\"text-lg font-semibold\">Total Revenue</h2>\n            <p className=\"text-xl\">{(financialMetrics.totalRevenue / 1e9).toFixed(2)} Billion {currency}</p>\n          </div>\n        </div>\n      </div>\n      <div className=\"mb-6\">\n        <h2 className=\"text-xl font-bold mb-2\">Profitability Analysis</h2>\n        <div className=\"grid grid-cols-1 md:grid-cols-2 gap-4\">\n          <div className=\"p-4 bg-purple-100 rounded-lg\">\n            <h3 className=\"text-lg font-semibold\">Gross Profit</h3>\n            <p className=\"text-xl\">{(profitabilityAnalysis.grossProfit / 1e9).toFixed(2)} Billion {currency}</p>\n            <p className=\"text-sm text-gray-600\">Gross Margin: {profitabilityAnalysis.grossMargin}%</p>\n          </div>\n          <div className=\"p-4 bg-red-100 rounded-lg\">\n            <h3 className=\"text-lg font-semibold\">Net Profit Margin</h3>\n            <p className=\"text-xl\">{profitabilityAnalysis.netProfitMargin}%</p>\n          </div>\n        </div>\n      </div>\n      <div className=\"mb-6\">\n        <h2 className=\"text-xl font-bold mb-2\">Liquidity and Solvency</h2>\n        <div className=\"grid grid-cols-1 md:grid-cols-2 gap-4\">\n          <div className=\"p-4 bg-indigo-100 rounded-lg\">\n            <h3 className=\"text-lg font-semibold\">Current Ratio</h3>\n            <p className=\"text-xl\">{liquidityAndSolvency.currentRatio}</p>\n          </div>\n          <div className=\"p-4 bg-teal-100 rounded-lg\">\n            <h3 className=\"text-lg font-semibold\">Debt to Equity Ratio</h3>\n            <p className=\"text-xl\">{liquidityAndSolvency.debtToEquityRatio}</p>\n          </div>\n        </div>\n      </div>\n      <div className=\"mb-6\">\n        <h2 className=\"text-xl font-bold mb-2\">Cash Flow Analysis</h2>\n        <ResponsiveContainer width=\"100%\" height={300}>\n          <LineChart data={[\n            { name: 'Free Cash Flow', value: cashFlowAnalysis.freeCashFlow },\n            { name: 'Financing Activities', value: cashFlowAnalysis.cashFlowFromFinancing },\n            { name: 'Investing Activities', value: cashFlowAnalysis.cashFlowFromInvesting }\n          ]}>\n            <CartesianGrid strokeDasharray=\"3 3\" />\n            <XAxis dataKey=\"name\" />\n            <YAxis />\n            <Tooltip />\n            <Line type=\"monotone\" dataKey=\"value\" stroke=\"#8884d8\" />\n          </LineChart>\n        </ResponsiveContainer>\n      </div>\n      <div className=\"p-4 bg-gray-100 rounded-lg\">\n        <Info className=\"text-gray-500 mr-2 inline-block\" />\n        <span className=\"text-gray-700\">Apple Inc. is in a strong financial position, characterized by robust profitability and cash flow generation. While the company should monitor its liquidity and leverage to maintain financial stability, its current financial health supports continued growth and shareholder value.</span>\n      </div>\n    </div>\n  );\n};\n\nexport default FinancialAnalysisDisplay;",
+    "required_dependencies": [
+      "recharts",
+      "lucide-react",
+      "tailwindcss"
+    ],
+    "component_name": "FinancialAnalysisDisplay",
+    "props_interface": "interface Props { data: FinancialData; }",
+    "usage_example": "// How to use this component\nimport React from 'react';\nimport FinancialAnalysisDisplay from './FinancialAnalysisDisplay';\n\nconst financialData = {\n  ticker: 'AAPL',\n  currentPrice: 213.88,\n  currency: 'USD',\n  marketCap: 3194468958208,\n  lastUpdate: '2025-07-27T20:29:36.617066',\n  financialMetrics: {\n    totalRevenue: 391040000000,\n    netIncome: 93740000000,\n    totalAssets: 364980000000,\n    totalLiabilities: 308030000000,\n    operatingCashFlow: 118250000000\n  },\n  profitabilityAnalysis: {\n    grossProfit: 180680000000,\n    grossMargin: 46.2,\n    operatingIncome: 123220000000,\n    operatingMargin: 31.5,\n    netProfitMargin: 24.0\n  },\n  liquidityAndSolvency: {\n    currentRatio: 0.87,\n    currentAssets: 152990000000,\n    currentLiabilities: 176390000000,\n    debtToEquityRatio: 1.87,\n    totalDebt: 106630000000,\n    stockholdersEquity: 56950000000\n  },\n  cashFlowAnalysis: {\n    freeCashFlow: 108810000000,\n    cashFlowFromFinancing: -121980000000,\n    cashFlowFromInvesting: 2940000000\n  }\n};\n\nconst App = () => (\n  <div className=\"container mx-auto\">\n    <FinancialAnalysisDisplay data={financialData} />\n  </div>\n);\n\nexport default App;",
+    "generated_at": "2025-07-27T20:30:16.838320",
+    "query_context": null,
+    "framework": "React/TypeScript"
+  },
+  "rendering_mode": "hybrid"
+}

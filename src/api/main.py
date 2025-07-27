@@ -333,7 +333,10 @@ async def analyze_simple(request: QueryRequest, api_key: str = Depends(verify_ap
     
     try:
         # Import the original analysis function
-        from main import analyze_financial_query
+        import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from main import analyze_financial_query
         
         result = await analyze_financial_query(request.query, request.debug_mode)
         
