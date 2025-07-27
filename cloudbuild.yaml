@@ -2,11 +2,11 @@
 steps:
   # Build the container image
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/$PROJECT_ID/sankhya-finance-api:$COMMIT_SHA', '.']
+    args: ['build', '-t', 'gcr.io/$PROJECT_ID/sankhya-finance-api:latest', '.']
     
   # Push the container image to Container Registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/$PROJECT_ID/sankhya-finance-api:$COMMIT_SHA']
+    args: ['push', 'gcr.io/$PROJECT_ID/sankhya-finance-api:latest']
     
   # Deploy container image to Cloud Run
   - name: 'gcr.io/cloud-builders/gcloud'
@@ -15,7 +15,7 @@ steps:
     - 'deploy'
     - 'sankhya-finance-api'
     - '--image'
-    - 'gcr.io/$PROJECT_ID/sankhya-finance-api:$COMMIT_SHA'
+    - 'gcr.io/$PROJECT_ID/sankhya-finance-api:latest'
     - '--region'
     - 'us-central1'
     - '--platform'
@@ -34,7 +34,7 @@ steps:
 
 # Store the image in Container Registry
 images:
-  - gcr.io/$PROJECT_ID/sankhya-finance-api:$COMMIT_SHA
+  - gcr.io/$PROJECT_ID/sankhya-finance-api:latest
 
 # Timeout for the entire build
 timeout: 1200s

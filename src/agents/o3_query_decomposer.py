@@ -53,8 +53,10 @@ class O3QueryDecomposer:
     """
     
     def __init__(self, openai_api_key: str):
+        self.openai_api_key = openai_api_key
         self.openai_client = openai.AsyncOpenAI(api_key=openai_api_key)
         self.finance_client = None
+        self.current_query = None  # Store current query for context
         
     async def __aenter__(self):
         self.finance_client = YFinanceClient()
@@ -70,6 +72,7 @@ class O3QueryDecomposer:
         Main entry point: decompose a user query into executable steps
         Uses iterative refinement with o3 reasoning
         """
+        self.current_query = user_query  # Store for context in output formatting
         print(f"\n🧠 O3 Reasoning: Starting query decomposition...")
         print(f"Query: {user_query}")
         
@@ -477,6 +480,10 @@ Provide a detailed reasoning and step-by-step decomposition."""
             print(f"   🎨 Formatting Output")
             print(f"   📋 Output Template: {step.output_template}")
         
+        # Import the LLM output formatter
+        from .llm_output_formatter import LLMOutputFormatter
+        formatter = LLMOutputFormatter(self.openai_api_key)
+        
         # Gather all previous results
         all_data = {}
         for dep_id in step.depends_on:
@@ -487,13 +494,20 @@ Provide a detailed reasoning and step-by-step decomposition."""
         cleaned_data = self._clean_data_for_json(all_data)
         
         output_prompt = f"""
-        Format the following data according to these instructions: {step.output_template}
+        Create a comprehensive financial analysis report based on the following instructions: {step.output_template}
         
-        Data to Format:
+        Available Data:
         {json.dumps(cleaned_data, indent=2, default=str)}
         
-        Create a clear, well-formatted output that presents this information in an easy-to-read way.
-        Use tables, bullet points, and clear headers as appropriate.
+        IMPORTANT: Structure your response to include:
+        1. A clear summary of key findings
+        2. Specific metrics and numbers with context
+        3. Tables for comparative data when appropriate  
+        4. Key insights and implications
+        5. Clear conclusions
+        
+        Format the response in a clear, professional manner suitable for financial reporting.
+        Include specific numbers, percentages, and comparisons where relevant.
         """
         
         response = await self.openai_client.chat.completions.create(
@@ -502,13 +516,23 @@ Provide a detailed reasoning and step-by-step decomposition."""
                 {"role": "user", "content": output_prompt}
             ],
             temperature=0.1,
-            max_completion_tokens=1500
+            max_completion_tokens=2000
         )
         
         formatted_output = response.choices[0].message.content
         
+        # Create structured output for frontend using LLM
+        structured_result = await formatter.format_for_frontend(
+            formatted_output, 
+            cleaned_data, 
+            self.current_query  # Pass the original query for context
+        )
+        
         step.status = "completed"
-        step.result = formatted_output
+        step.result = {
+            "raw_output": formatted_output,
+            "structured_output": structured_result
+        }
         print(f"✅ {step.step_id} completed successfully")
         
         # Display the formatted output

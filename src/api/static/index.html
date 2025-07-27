@@ -63,15 +63,23 @@
             color: #2c3e50;
         }
         
-        textarea {
+        textarea, input[type="password"] {
             width: 100%;
             padding: 15px;
             border: 2px solid #e1e8ed;
             border-radius: 8px;
             font-size: 16px;
+            font-family: inherit;
+        }
+        
+        textarea {
             resize: vertical;
             min-height: 120px;
-            font-family: inherit;
+        }
+        
+        input[type="password"]:focus, textarea:focus {
+            outline: none;
+            border-color: #3498db;
         }
         
         textarea:focus {
@@ -233,6 +241,11 @@
                     ></textarea>
                 </div>
                 
+                <div class="input-group">
+                    <label for="apiKey">API Key:</label>
+                    <input type="password" id="apiKey" placeholder="Enter your API key (default: sk-sankhya-finance-2025)" value="sk-sankhya-finance-2025">
+                </div>
+                
                 <div class="controls">
                     <button id="analyzeBtn" onclick="analyzeQuery()">
                         🧠 Analyze Query
@@ -250,7 +263,8 @@
             <div class="results" id="results">
                 <div class="log-entry status">
                     <strong>Ready to analyze financial queries!</strong><br>
-                    Enter a query above and click "Analyze Query" to see real-time processing.
+                    Enter a query and your API key above, then click "Analyze Query" to see real-time processing.<br><br>
+                    <strong>Default API Key:</strong> sk-sankhya-finance-2025 (for demo purposes)
                 </div>
             </div>
             
@@ -315,8 +329,15 @@
             if (isAnalyzing) return;
             
             const query = document.getElementById('query').value.trim();
+            const apiKey = document.getElementById('apiKey').value.trim();
+            
             if (!query) {
                 alert('Please enter a query first!');
+                return;
+            }
+            
+            if (!apiKey) {
+                alert('Please enter your API key!');
                 return;
             }
             
@@ -335,6 +356,7 @@
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${apiKey}`,
                     },
                     body: JSON.stringify({
                         query: query,

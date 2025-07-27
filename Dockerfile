@@ -27,7 +27,9 @@ RUN pip install --no-cache-dir --upgrade pip \
 
 # Copy application code
 COPY src/ ./src/
-COPY .env.example .env
+
+# Create a basic .env file for Cloud Run (environment variables will be set via Cloud Run config)
+RUN echo "ENV=production" > .env
 
 # Create a non-root user
 RUN useradd --create-home --shell /bin/bash app \

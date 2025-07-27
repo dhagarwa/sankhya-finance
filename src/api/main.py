@@ -10,10 +10,11 @@ import traceback
 from datetime import datetime
 from typing import AsyncGenerator, Dict, Any
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Depends, Header
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
 from fastapi.staticfiles import StaticFiles
+from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from pydantic import BaseModel
 from dotenv import load_dotenv
 
@@ -43,6 +44,21 @@ app.add_middleware(
 
 # Mount static files for the HTML client
 app.mount("/static", StaticFiles(directory="src/api/static"), name="static")
+
+# Security
+security = HTTPBearer()
+
+def verify_api_key(authorization: HTTPAuthorizationCredentials = Depends(security)):
+    """Verify API key from Authorization header"""
+    api_key = authorization.credentials
+    expected_key = os.getenv("API_KEY", "sk-sankhya-finance-2025")  # Default demo key
+    
+    if api_key != expected_key:
+        raise HTTPException(
+            status_code=401,
+            detail="Invalid API key. Please provide a valid API key in the Authorization header."
+        )
+    return api_key
 
 
 class QueryRequest(BaseModel):
@@ -265,18 +281,19 @@ async def root():
 
 @app.get("/health")
 async def health_check():
-    """Detailed health check"""
+    """Detailed health check - no auth required"""
     openai_key = os.getenv("OPENAI_API_KEY")
     return {
         "status": "healthy",
         "timestamp": datetime.now().isoformat(),
         "openai_configured": bool(openai_key and "placeholder" not in openai_key),
-        "environment": "production" if os.getenv("ENV") == "production" else "development"
+        "environment": "production" if os.getenv("ENV") == "production" else "development",
+        "auth_required": True
     }
 
 
 @app.post("/analyze")
-async def analyze_query(request: QueryRequest):
+async def analyze_query(request: QueryRequest, api_key: str = Depends(verify_api_key)):
     """
     Analyze a financial query with streaming real-time updates
     """
@@ -302,7 +319,7 @@ async def analyze_query(request: QueryRequest):
 
 
 @app.post("/analyze-simple")
-async def analyze_simple(request: QueryRequest):
+async def analyze_simple(request: QueryRequest, api_key: str = Depends(verify_api_key)):
     """
     Simple non-streaming analysis endpoint
     """
