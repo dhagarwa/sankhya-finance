@@ -21,15 +21,35 @@ class LLMOutputFormatter:
                                 step_data: Dict[str, Any], 
                                 original_query: str) -> Dict[str, Any]:
         """
+        Use GPT-4o to intelligently convert raw analysis + data into both structured JSON 
+        and executable TypeScript/React components for frontend
+        """
+        
+        # Generate both structured JSON and TypeScript components
+        structured_json = await self._generate_structured_json(raw_output, step_data, original_query)
+        typescript_component = await self._generate_typescript_component(raw_output, step_data, original_query)
+        
+        # Combine both outputs
+        result = structured_json.copy()
+        result["typescript_component"] = typescript_component
+        result["rendering_mode"] = "hybrid"  # Both JSON and TypeScript available
+        
+        return result
+    
+    async def _generate_structured_json(self, 
+                                      raw_output: str, 
+                                      step_data: Dict[str, Any], 
+                                      original_query: str) -> Dict[str, Any]:
+        """
         Use GPT-4o to intelligently convert raw analysis + data into structured JSON for frontend
         
         Returns structured JSON with content blocks that frontend can render beautifully
         """
         
-        # Prepare the data context for the LLM
+                 # Prepare the data context for the LLM
         data_context = self._prepare_data_context(step_data)
         
-        # Create the formatting prompt
+        # Create the JSON formatting prompt
         formatting_prompt = f"""
 You are an expert financial data visualization specialist. Your task is to convert raw financial analysis results into a perfectly structured JSON format that a frontend can use to create beautiful, interactive displays.
 
@@ -184,6 +204,152 @@ Based on the user's query "{original_query}", intelligently select and structure
         except Exception as e:
             print(f"❌ Error in LLM formatting: {e}")
             return self._create_fallback_structure(raw_output, original_query)
+    
+    async def _generate_typescript_component(self, 
+                                           raw_output: str, 
+                                           step_data: Dict[str, Any], 
+                                           original_query: str) -> Dict[str, Any]:
+        """Generate TypeScript/React component code for rendering the analysis"""
+        
+        data_context = self._prepare_data_context(step_data)
+        
+        typescript_prompt = f"""
+You are an expert React/TypeScript developer specializing in financial data visualization. 
+Create a beautiful, interactive React component that renders the financial analysis results.
+
+ORIGINAL USER QUERY: "{original_query}"
+
+RAW ANALYSIS OUTPUT:
+{raw_output}
+
+UNDERLYING DATA:
+{json.dumps(data_context, indent=2, default=str)}
+
+Generate a complete TypeScript React component with the following specifications:
+
+1. **Component Structure**: Create a functional component called `FinancialAnalysisDisplay`
+2. **Styling**: Use Tailwind CSS for styling (assume it's available)
+3. **Interactivity**: Make it interactive where appropriate (hover effects, expandable sections)
+4. **Data Visualization**: Choose appropriate visualization methods:
+   - Key metrics → Large number cards with trend indicators
+   - Tables → Responsive, sortable tables
+   - Time series → Line charts using Recharts library
+   - Comparisons → Side-by-side comparison cards
+   - Insights → Highlighted callout boxes
+
+5. **Icons**: Use Lucide React icons (assume available: TrendingUp, TrendingDown, DollarSign, BarChart3, Info, etc.)
+
+6. **Responsive Design**: Mobile-friendly layout
+
+7. **TypeScript**: Proper typing for all props and data
+
+Return ONLY a JSON object with this structure:
+{{
+  "component_code": "// Complete TypeScript React component code here",
+  "required_dependencies": ["recharts", "lucide-react", "tailwindcss"],
+  "component_name": "FinancialAnalysisDisplay",
+  "props_interface": "interface Props {{ ... }}",
+  "usage_example": "// How to use this component"
+}}
+
+CRITICAL REQUIREMENTS:
+- The component must be self-contained and executable
+- Include proper TypeScript interfaces
+- Use modern React functional component syntax
+- Make it visually appealing and professional
+- Ensure all data from the analysis is properly displayed
+- Add loading states and error handling where appropriate
+- Include proper accessibility attributes
+
+Generate a component that directly addresses the user's query: "{original_query}"
+
+Focus on creating the most appropriate visualization for this specific financial query.
+"""
+
+        try:
+            response = await self.openai_client.chat.completions.create(
+                model="gpt-4o",
+                messages=[
+                    {"role": "system", "content": "You are a React/TypeScript expert who creates beautiful financial data visualizations. Always return valid JSON with component code."},
+                    {"role": "user", "content": typescript_prompt}
+                ],
+                temperature=0.1,
+                max_completion_tokens=4000
+            )
+            
+            typescript_response = response.choices[0].message.content.strip()
+            
+            try:
+                typescript_data = json.loads(typescript_response)
+                
+                # Add metadata
+                typescript_data["generated_at"] = datetime.now().isoformat()
+                typescript_data["query_context"] = original_query
+                typescript_data["framework"] = "React/TypeScript"
+                
+                return typescript_data
+                
+            except json.JSONDecodeError as e:
+                print(f"❌ Invalid JSON from TypeScript generator: {e}")
+                print(f"Raw response: {typescript_response[:500]}...")
+                
+                return self._create_fallback_typescript()
+                
+        except Exception as e:
+            print(f"❌ Error generating TypeScript component: {e}")
+            return self._create_fallback_typescript()
+    
+    def _create_fallback_typescript(self) -> Dict[str, Any]:
+        """Create a basic fallback TypeScript component"""
+        
+        fallback_component = '''
+import React from 'react';
+import { AlertCircle } from 'lucide-react';
+
+interface Props {
+  data?: any;
+  error?: string;
+}
+
+const FinancialAnalysisDisplay: React.FC<Props> = ({ data, error }) => {
+  if (error) {
+    return (
+      <div className="p-6 bg-red-50 border border-red-200 rounded-lg">
+        <div className="flex items-center space-x-2">
+          <AlertCircle className="h-5 w-5 text-red-500" />
+          <span className="text-red-700">Error loading analysis: {error}</span>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="p-6 bg-white border border-gray-200 rounded-lg shadow">
+      <h2 className="text-xl font-bold text-gray-900 mb-4">Financial Analysis</h2>
+      <div className="text-gray-600">
+        <p>Analysis completed successfully.</p>
+        <p className="mt-2 text-sm">
+          Note: Fallback component used. Please check the raw analysis data.
+        </p>
+      </div>
+    </div>
+  );
+};
+
+export default FinancialAnalysisDisplay;
+'''
+        
+        return {
+            "component_code": fallback_component.strip(),
+            "required_dependencies": ["react", "lucide-react", "tailwindcss"],
+            "component_name": "FinancialAnalysisDisplay",
+            "props_interface": "interface Props { data?: any; error?: string; }",
+            "usage_example": "<FinancialAnalysisDisplay data={analysisData} />",
+            "generated_at": datetime.now().isoformat(),
+            "query_context": "fallback",
+            "framework": "React/TypeScript",
+            "note": "Fallback component due to generation error"
+        }
     
     def _prepare_data_context(self, step_data: Dict[str, Any]) -> Dict[str, Any]:
         """Prepare the raw step data for LLM consumption"""
