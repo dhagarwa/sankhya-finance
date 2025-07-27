@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sankhya Finance - AI Financial Analysis</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .query-section {
+            margin-bottom: 30px;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e1e8ed;
+            border-radius: 8px;
+            font-size: 16px;
+            resize: vertical;
+            min-height: 120px;
+            font-family: inherit;
+        }
+        
+        textarea:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+        
+        .controls {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        button {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        button:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+        }
+        
+        button:disabled {
+            background: #bdc3c7;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .checkbox-group input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+        }
+        
+        .results {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            min-height: 400px;
+            font-family: 'Monaco', 'Consolas', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            overflow-y: auto;
+            max-height: 600px;
+        }
+        
+        .log-entry {
+            margin-bottom: 10px;
+            padding: 8px 12px;
+            border-radius: 4px;
+            border-left: 4px solid transparent;
+        }
+        
+        .log-entry.status {
+            background: #e3f2fd;
+            border-left-color: #2196f3;
+        }
+        
+        .log-entry.step_start {
+            background: #fff3e0;
+            border-left-color: #ff9800;
+        }
+        
+        .log-entry.step_completed {
+            background: #e8f5e8;
+            border-left-color: #4caf50;
+        }
+        
+        .log-entry.step_failed {
+            background: #ffebee;
+            border-left-color: #f44336;
+        }
+        
+        .log-entry.formatted_output {
+            background: #f3e5f5;
+            border-left-color: #9c27b0;
+            font-family: inherit;
+            white-space: pre-wrap;
+        }
+        
+        .log-entry.final_summary {
+            background: #e0f2f1;
+            border-left-color: #00796b;
+            font-weight: 600;
+        }
+        
+        .log-entry.error {
+            background: #ffcdd2;
+            border-left-color: #d32f2f;
+            font-weight: 600;
+        }
+        
+        .timestamp {
+            color: #666;
+            font-size: 12px;
+        }
+        
+        .examples {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .examples h3 {
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        
+        .example-queries {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 10px;
+        }
+        
+        .example-query {
+            background: white;
+            padding: 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 1px solid #e1e8ed;
+        }
+        
+        .example-query:hover {
+            background: #f0f8ff;
+            border-color: #3498db;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 Sankhya Finance</h1>
+            <p>AI-Powered Financial Analysis with Real-time Streaming</p>
+        </div>
+        
+        <div class="content">
+            <div class="query-section">
+                <div class="input-group">
+                    <label for="query">Enter your financial query:</label>
+                    <textarea 
+                        id="query" 
+                        placeholder="Ask anything about stocks, companies, financial data...&#10;&#10;Examples:&#10;• What is Apple's current stock price?&#10;• Compare TSLA and NVDA revenue growth&#10;• Show me Microsoft's cash flow trends"
+                    ></textarea>
+                </div>
+                
+                <div class="controls">
+                    <button id="analyzeBtn" onclick="analyzeQuery()">
+                        🧠 Analyze Query
+                    </button>
+                    <button onclick="clearResults()">
+                        🗑️ Clear Results
+                    </button>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="debugMode">
+                        <label for="debugMode">Debug mode</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="results" id="results">
+                <div class="log-entry status">
+                    <strong>Ready to analyze financial queries!</strong><br>
+                    Enter a query above and click "Analyze Query" to see real-time processing.
+                </div>
+            </div>
+            
+            <div class="examples">
+                <h3>📝 Example Queries</h3>
+                <div class="example-queries">
+                    <div class="example-query" onclick="setQuery('What is Apple\'s current stock price?')">
+                        📈 Current stock price
+                    </div>
+                    <div class="example-query" onclick="setQuery('Compare TSLA and NVDA revenue growth over the last 4 quarters')">
+                        🔄 Revenue comparison
+                    </div>
+                    <div class="example-query" onclick="setQuery('Show me Microsoft\'s cash flow statements')">
+                        💰 Cash flow analysis
+                    </div>
+                    <div class="example-query" onclick="setQuery('Get recent news about Amazon')">
+                        📰 Company news
+                    </div>
+                    <div class="example-query" onclick="setQuery('What are Google\'s balance sheet metrics?')">
+                        📊 Balance sheet data
+                    </div>
+                    <div class="example-query" onclick="setQuery('Analyze Netflix\'s financial performance')">
+                        📺 Performance analysis
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let isAnalyzing = false;
+        
+        function setQuery(query) {
+            document.getElementById('query').value = query;
+        }
+        
+        function clearResults() {
+            document.getElementById('results').innerHTML = `
+                <div class="log-entry status">
+                    <strong>Results cleared.</strong><br>
+                    Ready for a new query!
+                </div>
+            `;
+        }
+        
+        function addLogEntry(type, message, timestamp) {
+            const results = document.getElementById('results');
+            const entry = document.createElement('div');
+            entry.className = `log-entry ${type}`;
+            
+            const timeStr = timestamp ? new Date(timestamp).toLocaleTimeString() : new Date().toLocaleTimeString();
+            entry.innerHTML = `
+                <div>${message}</div>
+                <div class="timestamp">${timeStr}</div>
+            `;
+            
+            results.appendChild(entry);
+            results.scrollTop = results.scrollHeight;
+        }
+        
+        async function analyzeQuery() {
+            if (isAnalyzing) return;
+            
+            const query = document.getElementById('query').value.trim();
+            if (!query) {
+                alert('Please enter a query first!');
+                return;
+            }
+            
+            const debugMode = document.getElementById('debugMode').checked;
+            const button = document.getElementById('analyzeBtn');
+            
+            isAnalyzing = true;
+            button.disabled = true;
+            button.textContent = '🤔 Analyzing...';
+            
+            // Clear previous results
+            clearResults();
+            
+            try {
+                const response = await fetch('/analyze', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        query: query,
+                        debug_mode: debugMode
+                    })
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const reader = response.body.getReader();
+                const decoder = new TextDecoder();
+                
+                while (true) {
+                    const { value, done } = await reader.read();
+                    if (done) break;
+                    
+                    const chunk = decoder.decode(value);
+                    const lines = chunk.split('\n');
+                    
+                    for (const line of lines) {
+                        if (line.startsWith('data: ')) {
+                            try {
+                                const data = JSON.parse(line.slice(6));
+                                handleStreamMessage(data);
+                            } catch (e) {
+                                console.error('Failed to parse streaming data:', e);
+                            }
+                        }
+                    }
+                }
+                
+            } catch (error) {
+                addLogEntry('error', `❌ Error: ${error.message}`, new Date().toISOString());
+            } finally {
+                isAnalyzing = false;
+                button.disabled = false;
+                button.textContent = '🧠 Analyze Query';
+            }
+        }
+        
+        function handleStreamMessage(message) {
+            const { type, data } = message;
+            
+            switch (type) {
+                case 'status':
+                    addLogEntry('status', data.message, data.timestamp);
+                    break;
+                    
+                case 'pattern_result':
+                    addLogEntry('status', 
+                        `${data.message}<br>Detected tickers: ${data.detected_tickers.join(', ') || 'None'}`, 
+                        data.timestamp
+                    );
+                    break;
+                    
+                case 'decomposition_result':
+                    const steps = data.steps.map(s => `• ${s.step_id} (${s.step_type}): ${s.description}`).join('<br>');
+                    addLogEntry('status', 
+                        `${data.message}<br><br><strong>Reasoning:</strong><br>${data.reasoning}<br><br><strong>Steps:</strong><br>${steps}`, 
+                        data.timestamp
+                    );
+                    break;
+                    
+                case 'step_start':
+                    addLogEntry('step_start', data.message, data.timestamp);
+                    break;
+                    
+                case 'step_progress':
+                    addLogEntry('status', data.message, data.timestamp);
+                    break;
+                    
+                case 'step_completed':
+                    addLogEntry('step_completed', data.message, data.timestamp);
+                    break;
+                    
+                case 'step_failed':
+                    addLogEntry('step_failed', `${data.message}<br>Error: ${data.error}`, data.timestamp);
+                    break;
+                    
+                case 'formatted_output':
+                    addLogEntry('formatted_output', data.output, data.timestamp);
+                    break;
+                    
+                case 'final_summary':
+                    addLogEntry('final_summary', `${data.message}<br><br>${data.final_analysis}`, data.timestamp);
+                    break;
+                    
+                case 'error':
+                    addLogEntry('error', data.message, data.timestamp);
+                    break;
+                    
+                default:
+                    console.log('Unknown message type:', type, data);
+            }
+        }
+        
+        // Allow Enter key to submit (Ctrl+Enter for new line)
+        document.getElementById('query').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && !e.ctrlKey && !e.shiftKey) {
+                e.preventDefault();
+                analyzeQuery();
+            }
+        });
+    </script>
+</body>
+</html> 
