@@ -13,6 +13,7 @@ import openai
 from pydantic import BaseModel, Field
 
 from .yfinance_client import YFinanceClient, FinanceToolRegistry, FinanceResponse
+from .intelligent_ticker_extractor import IntelligentTickerExtractor
 
 
 @dataclass
@@ -55,6 +56,9 @@ class O3QueryDecomposer:
     def __init__(self, openai_api_key: str):
         self.openai_api_key = openai_api_key
         self.openai_client = openai.AsyncOpenAI(api_key=openai_api_key)
+        # Create synchronous client for the ticker extractor
+        self.openai_sync_client = openai.OpenAI(api_key=openai_api_key)
+        self.intelligent_ticker_extractor = IntelligentTickerExtractor(self.openai_sync_client)
         self.finance_client = None
         self.current_query = None  # Store current query for context
         
@@ -581,8 +585,29 @@ class QueryPatterns:
             return "general"
     
     @staticmethod
-    def extract_tickers(query: str) -> List[str]:
-        """Extract likely ticker symbols from query"""
+    def extract_tickers(query: str, intelligent_extractor: Optional[IntelligentTickerExtractor] = None) -> List[str]:
+        """
+        Extract relevant S&P 500 ticker symbols from natural language query
+        Uses intelligent LLM-powered understanding when extractor is provided, otherwise falls back to heuristics
+        """
+        # If intelligent extractor is provided, use it
+        if intelligent_extractor:
+            try:
+                tickers = intelligent_extractor.extract_tickers(query)
+                
+                if tickers:
+                    print(f"🔍 Intelligent extraction found {len(tickers)} relevant companies:")
+                    # Get explanation for transparency
+                    explanation = intelligent_extractor.get_extraction_explanation(query, tickers)
+                    print(f"   Reasoning: {explanation[:200]}...")
+                    
+                return tickers
+                
+            except Exception as e:
+                print(f"⚠️ Intelligent extraction failed, using fallback: {e}")
+                # Fall through to heuristic approach
+        
+        # Fallback heuristic ticker extraction (original method)
         import re
         
         # Look for patterns like AAPL, MSFT, TSLA (2-5 uppercase letters)

@@ -101,14 +101,7 @@ class StreamingAnalyzer:
             })
             
             query_type = QueryPatterns.detect_query_type(query)
-            
-            # Create intelligent ticker extractor for smart ticker detection
-            from openai import OpenAI
-            from agents.intelligent_ticker_extractor import IntelligentTickerExtractor
-            openai_sync_client = OpenAI(api_key=self.openai_api_key)
-            intelligent_extractor = IntelligentTickerExtractor(openai_sync_client)
-            
-            tickers = QueryPatterns.extract_tickers(query, intelligent_extractor)
+            tickers = QueryPatterns.extract_tickers(query)
             
             yield self._format_stream_message("pattern_result", {
                 "query_type": query_type,
@@ -340,7 +333,7 @@ async def analyze_simple(request: QueryRequest, api_key: str = Depends(verify_ap
     
     try:
         # Import the original analysis function
-        from ..main import analyze_financial_query
+        from main import analyze_financial_query
         
         result = await analyze_financial_query(request.query, request.debug_mode)
         

@@ -39,7 +39,7 @@ async def analyze_financial_query(query: str, debug_mode: bool = False) -> dict:
             # Step 1: Analyze query patterns
             print("\n📊 Step 1: Query Pattern Analysis")
             query_type = QueryPatterns.detect_query_type(query)
-            tickers = QueryPatterns.extract_tickers(query)
+            tickers = QueryPatterns.extract_tickers(query, decomposer.intelligent_ticker_extractor)
             print(f"   Query Type: {query_type}")
             print(f"   Detected Tickers: {tickers if tickers else 'None detected'}")
             
