@@ -1,0 +1,34 @@
+# =============================================================================
+# Sankhya Finance v2 - Dependencies
+# =============================================================================
+# Core framework: LangGraph for stateful agent orchestration
+# LLM provider: OpenAI (GPT-4o / GPT-5)
+# Data sources: Yahoo Finance, SEC EDGAR, FRED, FMP
+# =============================================================================
+
+# --- LangGraph & LangChain Core ---
+langgraph                   # Graph-based agent orchestration framework
+langchain-openai            # OpenAI integration for LangChain/LangGraph
+langchain-core              # Core abstractions (tools, messages, prompts)
+
+# --- LLM Provider ---
+openai                      # OpenAI Python SDK (used by langchain-openai)
+
+# --- Financial Data ---
+yfinance                    # Yahoo Finance API client for market data
+
+# --- Web Search ---
+ddgs                        # Free web search via DuckDuckGo (no API key needed)
+
+# --- HTTP Client (for SEC EDGAR, FRED, FMP APIs) ---
+requests                    # HTTP library for REST API calls
+
+# --- Data Processing ---
+pandas                      # DataFrames for financial data manipulation
+
+# --- Configuration ---
+python-dotenv               # Load .env files for API keys
+pydantic                    # Data validation and settings (used by LangGraph state)
+
+# --- Output ---
+rich                        # Beautiful terminal output for CLI mode

@@ -30,3 +30,8 @@ dist/
 build/
 *.egg-info/
 node_modules
+
+# Test results (regenerable, can be large)
+sankhya-finance-v2/tests/results/*.jsonl
+sankhya-finance-v2/tests/results/*.json
+
