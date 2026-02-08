@@ -89,7 +89,7 @@ def _serialize_state(state: dict) -> dict:
                         "error": sval.error,
                         "data_keys": list(sval.data.keys()) if sval.data else None,
                         "data_size": len(json.dumps(sval.data, default=str)) if sval.data else 0,
-                        "analysis_preview": sval.analysis[:200] if sval.analysis else None,
+                        "analysis_full": sval.analysis if sval.analysis else None,
                     }
                 else:
                     sr[sid] = str(sval)
@@ -107,15 +107,18 @@ def _serialize_state(state: dict) -> dict:
             out[key] = {
                 "has_summary": bool(so.get("summary")),
                 "content_blocks": len(so.get("content_blocks", [])),
-                "key_insights": len(so.get("key_insights", [])),
-                "recommendations": len(so.get("recommendations", [])),
-                "summary_preview": (so.get("summary", "") or "")[:200],
+                "key_insights": so.get("key_insights", []),
+                "recommendations": so.get("recommendations", []),
+                "summary_preview": (so.get("summary", "") or "")[:300],
             }
         elif key == "typescript_component":
             tc = val or {}
             out[key] = {
                 "has_component": bool(tc.get("component_code")),
                 "code_length": len(tc.get("component_code", "")),
+                "component_code": tc.get("component_code", ""),
+                "component_name": tc.get("component_name", ""),
+                "required_dependencies": tc.get("required_dependencies", []),
             }
         elif isinstance(val, (str, int, float, bool, type(None))):
             out[key] = val

@@ -4,24 +4,41 @@ Verifier Node - LLM-powered quality check after every step execution.
 This is the "quality control" node that runs AFTER every StepExecutor call.
 It ALWAYS calls the LLM to evaluate the step result -- no shortcircuits.
 
-The LLM inspects the result and returns a structured verdict:
+The LLM checks FOUR things against the ORIGINAL user query:
+    1. Completeness - Are all expected fields present and non-null?
+    2. Correctness  - Are values in reasonable ranges? Are dates recent?
+    3. Relevance    - Does this data actually help answer the user's question?
+    4. Error Check  - Any explicit errors, empty data, or API failures?
 
-    OK              -> The step result is good quality and answers what was needed.
-                       If more steps remain, advance to the next step.
-                       If all steps are done, go to OutputFormatter.
+Based on assessment, the LLM returns a structured verdict that drives routing:
 
-    NEEDS_MORE_DATA -> The step result is incomplete, has errors, or is missing
-                       important information. Go back to StepExecutor with a
-                       modified retry_step that has corrected parameters.
+    OK              -> The step result is good quality.
+                       If more steps remain -> AdvanceIndex -> Executor (next step)
+                       If all steps are done (including final_synthesis) -> OutputFormatter
+
+    NEEDS_MORE_DATA -> The step result is incomplete or has errors.
+                       Go back to Executor with a modified retry_step
+                       that has corrected parameters (e.g., different date range,
+                       different tool, additional fields).
+                       Max 2 retries per step, then force OK.
 
     REPLAN          -> The entire decomposition plan is fundamentally wrong
                        (e.g., wrong tickers, wrong approach, wrong tools).
-                       Go back to the Decomposer to create a new plan.
+                       Go back to Decomposer to create a completely new plan.
+                       Max 1 replan per query, then force OK.
 
-Safety limits:
-    - retry_count:  tracks retries per step (max 2), then force OK
-    - replan_count: explicit counter in state (max 1), then force OK
-    - recursion_limit: set at graph compile time as final backstop
+Graph position (this is the routing hub):
+    Executor -> [this node]
+                    │
+                    ├─ OK + more steps ──────► AdvanceIndex -> Executor
+                    ├─ OK + all done ────────► OutputFormatter -> END
+                    ├─ NEEDS_MORE_DATA ──────► Executor (retry, max 2)
+                    └─ REPLAN ───────────────► Decomposer (new plan, max 1)
+
+Safety limits (prevent infinite loops):
+    - retry_count:     max 2 retries per step, then force OK
+    - replan_count:    max 1 replan per query, then force OK
+    - recursion_limit: 40 total node calls (hard stop at graph level)
 """
 
 import json

@@ -3,19 +3,29 @@ OutputFormatter Node - The final node before END.
 
 This node takes all the accumulated step results and produces two outputs:
 
-1. **Structured JSON** - A frontend-friendly JSON structure with content blocks
-   (metrics, tables, charts, comparisons, insights) that a React app can render.
+1. **Structured JSON** - A frontend-friendly JSON structure with:
+   - Summary (1-2 sentences)
+   - Content blocks (metrics, tables, charts, insights)
+   - Key insights (3-5 bullet points)
+   - Recommendations
+   - Metadata (query type, companies, confidence)
 
-2. **TypeScript Component** - A complete React/TypeScript component that renders
-   the analysis results using Tailwind CSS and Recharts.
+2. **TypeScript Component** - A complete React/TypeScript component that
+   renders the analysis using Tailwind CSS, Recharts, and Lucide icons.
+   This is a self-contained widget ready to drop into a Next.js app.
 
-This replaces v1's LLMOutputFormatter class. The key improvement is that
-this is a single node call instead of a separate class with its own model
-config, client management, and error handling.
+Input priority:
+    - If a "final_synthesis" step exists (from the Decomposer's mandatory
+      last step), it is used as the PRIMARY analysis text. This is the
+      direct answer to the user's question.
+    - All other step results are included as "supporting data" for the
+      LLM to reference when creating structured output and the component.
+    - For non-financial queries (DirectResponse path), the direct_response
+      text is used instead.
 
-Flow:
-    Verifier (all_done) -> [this node] -> END
-    DirectResponse       -> [this node] -> END
+Graph position:
+    Verifier (all steps done, including final_synthesis) -> [this node] -> END
+    DirectResponse (non-financial query)                 -> [this node] -> END
 """
 
 import json
@@ -164,8 +174,23 @@ async def output_formatter(state: FinanceState) -> dict[str, Any]:
     raw_analysis = state.get("raw_analysis", "")
 
     if not raw_analysis:
-        # If no raw_analysis yet (financial query path), build from step results
-        raw_analysis = _build_raw_analysis(step_results)
+        # If no raw_analysis yet (financial query path), build from step results.
+        # Prefer the final_synthesis step as the primary analysis if it exists.
+        final_synthesis = step_results.get("final_synthesis")
+        if (
+            final_synthesis
+            and isinstance(final_synthesis, StepResult)
+            and final_synthesis.success
+            and final_synthesis.analysis
+        ):
+            # Use final_synthesis as the main analysis, but keep all step data
+            # for the structured output / TypeScript generators
+            raw_analysis = (
+                f"=== FINAL ANALYSIS ===\n{final_synthesis.analysis}\n\n"
+                f"=== SUPPORTING DATA ===\n{_build_raw_analysis(step_results)}"
+            )
+        else:
+            raw_analysis = _build_raw_analysis(step_results)
 
     # --- Build data summary for the LLM ---
     data_summary = _build_data_summary(step_results)

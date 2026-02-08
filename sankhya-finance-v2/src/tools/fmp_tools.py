@@ -11,6 +11,8 @@ These fill a critical gap: YFinance gives you trailing data, but equity
 analysis needs FORWARD estimates to value stocks. Analyst consensus is
 the standard source for forward-looking data.
 
+Uses FMP's /stable/ API (the current production API).
+
 Requires: FMP_API_KEY (free tier: ~250 calls/day)
 Register at: https://financialmodelingprep.com/developer/docs/
 
@@ -29,7 +31,7 @@ from langchain_core.tools import tool
 # Configuration
 # =============================================================================
 
-FMP_BASE = "https://financialmodelingprep.com/api/v3"
+FMP_BASE = "https://financialmodelingprep.com/stable"
 
 
 def _get_fmp_key() -> str | None:
@@ -38,7 +40,7 @@ def _get_fmp_key() -> str | None:
 
 
 def _fmp_get(endpoint: str, params: dict | None = None) -> Any:
-    """Make a request to the FMP API."""
+    """Make a request to the FMP stable API."""
     api_key = _get_fmp_key()
     if not api_key:
         raise EnvironmentError(
@@ -69,9 +71,8 @@ def get_analyst_estimates(
 ) -> dict[str, Any]:
     """Get Wall Street analyst consensus estimates for a company.
 
-    Returns forward-looking estimates for revenue, EPS, EBITDA, net income,
-    and SGA expenses -- including low, average, and high estimates for
-    each period.
+    Returns forward-looking estimates for revenue, EPS, EBITDA, net income
+    -- including low, average, and high estimates for each period.
 
     This is CRITICAL for equity analysis: forward P/E, PEG ratio, and
     DCF models all depend on analyst estimates.
@@ -82,9 +83,11 @@ def get_analyst_estimates(
         limit: Number of periods to return (default: 5).
     """
     try:
-        endpoint = f"analyst-estimates/{ticker.upper()}"
-        params = {"period": period, "limit": limit}
-        data = _fmp_get(endpoint, params)
+        data = _fmp_get("analyst-estimates", {
+            "symbol": ticker.upper(),
+            "period": period,
+            "limit": limit,
+        })
 
         if not data:
             return {"error": f"No analyst estimates found for {ticker}"}
@@ -98,26 +101,26 @@ def get_analyst_estimates(
             estimates.append({
                 "date": entry.get("date", ""),
                 "revenue_estimate": {
-                    "low": entry.get("estimatedRevenueLow"),
-                    "avg": entry.get("estimatedRevenueAvg"),
-                    "high": entry.get("estimatedRevenueHigh"),
+                    "low": entry.get("revenueLow"),
+                    "avg": entry.get("revenueAvg"),
+                    "high": entry.get("revenueHigh"),
                 },
                 "eps_estimate": {
-                    "low": entry.get("estimatedEpsLow"),
-                    "avg": entry.get("estimatedEpsAvg"),
-                    "high": entry.get("estimatedEpsHigh"),
+                    "low": entry.get("epsLow") or entry.get("estimatedEpsLow"),
+                    "avg": entry.get("epsAvg") or entry.get("estimatedEpsAvg"),
+                    "high": entry.get("epsHigh") or entry.get("estimatedEpsHigh"),
                 },
                 "ebitda_estimate": {
-                    "low": entry.get("estimatedEbitdaLow"),
-                    "avg": entry.get("estimatedEbitdaAvg"),
-                    "high": entry.get("estimatedEbitdaHigh"),
+                    "low": entry.get("ebitdaLow") or entry.get("estimatedEbitdaLow"),
+                    "avg": entry.get("ebitdaAvg") or entry.get("estimatedEbitdaAvg"),
+                    "high": entry.get("ebitdaHigh") or entry.get("estimatedEbitdaHigh"),
                 },
                 "net_income_estimate": {
-                    "low": entry.get("estimatedNetIncomeLow"),
-                    "avg": entry.get("estimatedNetIncomeAvg"),
-                    "high": entry.get("estimatedNetIncomeHigh"),
+                    "low": entry.get("netIncomeLow") or entry.get("estimatedNetIncomeLow"),
+                    "avg": entry.get("netIncomeAvg") or entry.get("estimatedNetIncomeAvg"),
+                    "high": entry.get("netIncomeHigh") or entry.get("estimatedNetIncomeHigh"),
                 },
-                "number_of_analysts": entry.get("numberAnalystEstimatedRevenue"),
+                "number_of_analysts": entry.get("numberAnalystsEstimatedRevenue") or entry.get("numberAnalystEstimatedRevenue"),
             })
 
         return {
@@ -141,9 +144,9 @@ def get_analyst_estimates(
 def get_company_rating(ticker: str) -> dict[str, Any]:
     """Get a quantitative financial health rating for a company.
 
-    Returns an overall rating (S to F, like a credit rating) based on
-    DCF analysis, ROE, ROA, D/E ratio, P/E, and P/B. Also provides
-    individual scores for each category.
+    Returns an overall rating (A to F scale) based on DCF analysis, ROE,
+    ROA, D/E ratio, P/E, and P/B. Also provides individual scores for
+    each category.
 
     Useful as a quick screening tool before deeper analysis.
 
@@ -151,7 +154,7 @@ def get_company_rating(ticker: str) -> dict[str, Any]:
         ticker: Stock ticker symbol (e.g., 'AAPL', 'MSFT').
     """
     try:
-        data = _fmp_get(f"rating/{ticker.upper()}")
+        data = _fmp_get("ratings-snapshot", {"symbol": ticker.upper()})
 
         if not data:
             return {"error": f"No rating data found for {ticker}"}
@@ -164,36 +167,19 @@ def get_company_rating(ticker: str) -> dict[str, Any]:
 
         return {
             "ticker": ticker.upper(),
-            "rating_date": rating.get("date", ""),
             "overall_rating": rating.get("rating", ""),
-            "overall_score": rating.get("ratingScore"),
+            "overall_score": rating.get("overallScore"),
             "recommendation": rating.get("ratingRecommendation", ""),
             "component_scores": {
-                "dcf": {
-                    "score": rating.get("ratingDetailsDCFScore"),
-                    "recommendation": rating.get("ratingDetailsDCFRecommendation"),
-                },
-                "roe": {
-                    "score": rating.get("ratingDetailsROEScore"),
-                    "recommendation": rating.get("ratingDetailsROERecommendation"),
-                },
-                "roa": {
-                    "score": rating.get("ratingDetailsROAScore"),
-                    "recommendation": rating.get("ratingDetailsROARecommendation"),
-                },
-                "debt_equity": {
-                    "score": rating.get("ratingDetailsDEScore"),
-                    "recommendation": rating.get("ratingDetailsDERecommendation"),
-                },
-                "pe": {
-                    "score": rating.get("ratingDetailsPEScore"),
-                    "recommendation": rating.get("ratingDetailsPERecommendation"),
-                },
-                "pb": {
-                    "score": rating.get("ratingDetailsPBScore"),
-                    "recommendation": rating.get("ratingDetailsPBRecommendation"),
-                },
+                "dcf": rating.get("discountedCashFlowScore"),
+                "roe": rating.get("returnOnEquityScore"),
+                "roa": rating.get("returnOnAssetsScore"),
+                "debt_to_equity": rating.get("debtToEquityScore"),
+                "pe": rating.get("priceToEarningsScore"),
+                "pb": rating.get("priceToBookScore"),
             },
+            "note": "Scores range from 1 (worst) to 5 (best). "
+                    "Overall rating: A=strong, B=good, C=fair, D=weak, F=poor.",
         }
 
     except EnvironmentError as e:
@@ -218,24 +204,27 @@ def get_earnings_surprises(ticker: str, limit: int = 8) -> dict[str, Any]:
         limit: Number of quarters to return (default: 8, i.e., 2 years).
     """
     try:
-        data = _fmp_get(f"earnings-surprises/{ticker.upper()}")
+        data = _fmp_get("earnings", {"symbol": ticker.upper()})
 
         if not data:
-            return {"error": f"No earnings surprise data found for {ticker}"}
+            return {"error": f"No earnings data found for {ticker}"}
 
         if isinstance(data, dict) and "Error Message" in data:
             return {"error": f"FMP API error: {data['Error Message']}"}
 
-        # Take most recent entries
-        entries = data[:limit] if len(data) > limit else data
+        # Filter to entries that have actual data (skip future dates)
+        entries_with_data = [
+            e for e in data
+            if e.get("epsActual") is not None
+        ][:limit]
 
         surprises = []
         beats = 0
         misses = 0
         total = 0
-        for entry in entries:
-            actual = entry.get("actualEarningResult")
-            estimated = entry.get("estimatedEarning")
+        for entry in entries_with_data:
+            actual = entry.get("epsActual")
+            estimated = entry.get("epsEstimated")
 
             surprise_pct = None
             result = "N/A"
@@ -255,6 +244,8 @@ def get_earnings_surprises(ticker: str, limit: int = 8) -> dict[str, Any]:
                 "date": entry.get("date", ""),
                 "actual_eps": actual,
                 "estimated_eps": estimated,
+                "revenue_actual": entry.get("revenueActual"),
+                "revenue_estimated": entry.get("revenueEstimated"),
                 "surprise_pct": surprise_pct,
                 "result": result,
             })
@@ -298,13 +289,13 @@ FMP_TOOL_REGISTRY: dict[str, dict[str, Any]] = {
         },
     },
     "get_company_rating": {
-        "description": "Get quantitative financial health rating (S-F scale) based on DCF, ROE, ROA, D/E, P/E, P/B. Quick screening tool. Requires FMP_API_KEY (free).",
+        "description": "Get quantitative financial health rating (A-F scale) based on DCF, ROE, ROA, D/E, P/E, P/B. Quick screening tool. Requires FMP_API_KEY (free).",
         "parameters": {
             "ticker": "Stock ticker symbol (e.g., 'AAPL')",
         },
     },
     "get_earnings_surprises": {
-        "description": "Get historical earnings surprises (actual vs estimated EPS) with beat/miss rates. Strong signal for equity analysis. Requires FMP_API_KEY (free).",
+        "description": "Get historical earnings surprises (actual vs estimated EPS and revenue) with beat/miss rates. Strong signal for equity analysis. Requires FMP_API_KEY (free).",
         "parameters": {
             "ticker": "Stock ticker symbol (e.g., 'AAPL')",
             "limit": "Number of quarters (default: 8)",

@@ -9,76 +9,100 @@ An AI agent that takes natural language questions about stocks and companies, de
 ## Architecture
 
 ```
-                            ┌─────────────────────────────────────────┐
-                            │           USER QUERY                     │
-                            │  "Is NVIDIA a good investment right now?" │
-                            └────────────────┬────────────────────────┘
-                                             │
-                                             ▼
-                            ┌─────────────────────────────┐
-                            │       QUERY ROUTER           │
-                            │  LLM classifies:             │
-                            │  financial → Decomposer      │
-                            │  non-financial → Direct       │
-                            └──────┬──────────────┬────────┘
-                                   │              │
-                            financial        non-financial
-                                   │              │
-                                   ▼              ▼
-                     ┌──────────────────┐  ┌──────────────────┐
-                     │   DECOMPOSER     │  │ DIRECT RESPONSE  │
-                     │                  │  │ Answers from      │
-                     │ 1. Extract       │  │ general knowledge │
-                     │    tickers       │  └────────┬─────────┘
-                     │ 2. Plan steps:   │           │
-                     │    DATA → fetch  │           │
-                     │    ANALYSIS →    │           │
-                     │    reason        │           │
-                     └────────┬─────────┘           │
-                              │                     │
-                    ┌─────────▼──────────┐          │
-                    │   STEP EXECUTOR    │◄──┐      │
-                    │                    │   │      │
-                    │ Calls tools:       │   │      │
-                    │ • YFinance (11)    │   │      │
-                    │ • SEC EDGAR (3)    │   │      │
-                    │ • FRED (2)         │   │      │
-                    │ • FMP (3)          │   │      │
-                    │ • Web Search (2)   │   │      │
-                    └────────┬───────────┘   │      │
-                             │               │      │
-                    ┌────────▼───────────┐   │      │
-                    │     VERIFIER       │   │      │
-                    │                    │   │      │
-                    │ LLM checks:       │   │      │
-                    │ • Completeness    │   │      │
-                    │ • Correctness     │   │      │
-                    │ • Relevance to    │   │      │
-                    │   ORIGINAL QUERY  │   │      │
-                    │                    │   │      │
-                    │ Verdicts:          │   │      │
-                    │ OK → next step     │   │      │
-                    │ NEEDS_MORE_DATA ───┘   │      │
-                    │ REPLAN → Decomposer   │      │
-                    └────────┬───────────┘   │      │
-                             │               │      │
-                      (all steps done)       │      │
-                             │               │      │
-                    ┌────────▼───────────────┐      │
-                    │   OUTPUT FORMATTER     │◄─────┘
-                    │                        │
-                    │ Produces:              │
-                    │ • Structured JSON      │
-                    │ • React/TypeScript     │
-                    │   component            │
-                    │ • Key insights         │
-                    │ • Recommendations      │
-                    └────────┬───────────────┘
-                             │
-                             ▼
-                    ┌─────────────────────┐
-                    │    FINAL OUTPUT     │
-                    └─────────────────────┘
+    USER QUERY: "Is NVIDIA overvalued? Look at fundamentals and analyst sentiment"
+                                    │
+                                    ▼
+                    ┌───────────────────────────┐
+                    │       QUERY ROUTER        │
+                    │  "Does query mention a     │
+                    │   specific company?"       │
+                    └─────┬─────────────┬───────┘
+                          │             │
+                     financial     non_financial
+                     (YES)         (NO)
+                          │             │
+                          │             ▼
+                          │     ┌───────────────────┐
+                          │     │  DIRECT RESPONSE   │  LLM answers from
+                          │     │  (no data needed)  │  general knowledge
+                          │     └─────────┬─────────┘
+                          │               │
+                          ▼               │
+              ┌───────────────────┐       │
+          ┌──►│    DECOMPOSER     │       │
+          │   │                   │       │
+          │   │ 1. Extract tickers│       │
+          │   │ 2. Plan steps:    │       │
+          │   │    DATA → tools   │       │
+          │   │    ANALYSIS → LLM │       │
+          │   │ 3. final_synthesis│       │
+          │   │    (mandatory     │       │
+          │   │     last step)    │       │
+          │   └────────┬──────────┘       │
+          │            │                  │
+          │            ▼                  │
+          │   ┌────────────────┐          │
+          │   │   EXECUTOR     │◄──┐      │
+          │   │                │   │      │
+          │   │ DATA: calls    │   │      │
+          │   │  21 tools from │   │      │
+          │   │  5 sources     │   │      │
+          │   │ ANALYSIS: LLM  │   │      │
+          │   │  reasoning     │   │      │
+          │   └───────┬────────┘   │      │
+          │           │            │      │
+          │           ▼            │      │
+          │   ┌────────────────┐   │      │
+          │   │   VERIFIER     │   │      │
+          │   │                │   │      │
+          │   │ Checks against │   │      │
+          │   │ ORIGINAL query:│   │      │
+          │   │ 1. Completeness│   │      │
+          │   │ 2. Correctness │   │      │
+          │   │ 3. Relevance   │   │      │
+          │   │ 4. Errors      │   │      │
+          │   └─┬──┬──┬────────┘   │      │
+          │     │  │  │            │      │
+          │     │  │  └── NEEDS_MORE_DATA  │
+          │     │  │       (retry step     │
+          │     │  │        with modified  │
+          │     │  │        params, max 2) │
+          │     │  │                       │
+          │     │  └───── REPLAN ──────────┘
+          │     │         (scrap plan,
+          └─────┘          new plan, max 1)
+                │
+                ▼  OK
+          ┌─────────────┐
+          │ More steps?  │
+          │ YES → loop   │  AdvanceIndex → Executor
+          │ NO ──────────┤
+          └─────────────┘
+                │
+                ▼
+    ┌─────────────────────────┐
+    │    OUTPUT FORMATTER     │◄──────── (also receives DirectResponse)
+    │                         │
+    │ Uses final_synthesis    │
+    │ as primary analysis.    │
+    │                         │
+    │ Produces:               │
+    │ 1. Structured JSON      │
+    │    (summary, metrics,   │
+    │     tables, charts,     │
+    │     insights, recs)     │
+    │ 2. React/TypeScript     │
+    │    component (Tailwind  │
+    │    + Recharts)          │
+    └───────────┬─────────────┘
+                │
+                ▼
+               END
+
+    Safety limits:
+    ├── retry_count:     max 2 per step, then force OK
+    ├── replan_count:    max 1 per query, then force OK
+    └── recursion_limit: 40 total node calls (hard stop)
 ```
 
 ---
@@ -92,7 +116,7 @@ Here is the complete lifecycle of a query through the system, using a real examp
 **Step 1 — Query Router** (`src/nodes/query_router.py`)
 ```
 Input:  "Analyze NVIDIA's revenue growth and compare it with AMD"
-Action: LLM classifies as FINANCIAL (needs real data, not just general knowledge)
+Check:  Does this mention a specific company? YES (NVIDIA, AMD)
 Output: query_type = "financial" → routes to Decomposer
 ```
 
@@ -104,36 +128,58 @@ Output: detected_tickers = ["NVDA", "AMD"]
 
 **Step 3 — Decomposer** (`src/nodes/decomposer.py`)
 ```
-Action: LLM sees 21 available tools, creates an execution plan:
+Action: LLM sees 21 available tools across 5 data sources.
+        Creates an execution plan with a mandatory final_synthesis:
 
   step_1 (DATA):     get_income_statements(ticker="NVDA", period="annual", limit=5)
   step_2 (DATA):     get_income_statements(ticker="AMD", period="annual", limit=5)
   step_3 (DATA):     get_key_metrics(ticker="NVDA")
   step_4 (DATA):     get_key_metrics(ticker="AMD")
-  step_5 (ANALYSIS): "Compare NVDA and AMD revenue growth using step_1-4 data"
+  step_5 (ANALYSIS): "Compare NVDA vs AMD revenue growth rates" [depends: 1,2]
+  step_6 (ANALYSIS): "Analyze valuation differences" [depends: 3,4]
+  final_synthesis:   "Synthesize all findings into a direct answer
+                      to the user's question" [depends: ALL steps]
 
-Each step knows its dependencies (step_5 depends on steps 1-4).
+Each step declares its dependencies. final_synthesis is always last.
 ```
 
 **Step 4 — Execute + Verify Loop** (`src/nodes/step_executor.py` + `src/nodes/verifier.py`)
 ```
-For each step:
-  1. Executor calls the tool (or LLM for ANALYSIS steps)
+For each step (including final_synthesis):
+  1. Executor runs the step:
+     - DATA steps: calls the tool (e.g., get_income_statements)
+     - ANALYSIS steps: sends data + prompt to LLM
   2. Verifier checks the result against the ORIGINAL query:
-     - Is the data complete? Are the numbers reasonable?
-     - Does this actually help answer what the user asked?
-  3. Verdict:
-     - OK → move to next step
-     - NEEDS_MORE_DATA → retry with adjusted parameters (max 2 retries)
-     - REPLAN → scrap the plan, go back to Decomposer (max 1 replan)
+     - Completeness: are all expected fields present?
+     - Correctness: are numbers in reasonable ranges?
+     - Relevance: does this help answer "NVIDIA vs AMD revenue growth"?
+     - Errors: any API failures or empty data?
+  3. Verdict determines routing:
+     - OK → advance to next step (or OutputFormatter if all done)
+     - NEEDS_MORE_DATA → re-execute with modified parameters
+       (e.g., different date range, limit). Max 2 retries, then force OK.
+     - REPLAN → the entire plan is wrong (e.g., fetched wrong tickers).
+       Go back to Decomposer to create a new plan. Max 1 replan.
 ```
 
-**Step 5 — Output Formatter** (`src/nodes/output_formatter.py`)
+**Step 5 — Final Synthesis** (the last ANALYSIS step)
 ```
-Action: Combines all step results into:
-  1. Structured JSON with summary, content blocks (metrics, tables, charts),
-     key insights, and recommendations
-  2. React/TypeScript component code for frontend rendering
+Action: LLM receives ALL previous step data and analysis.
+        Writes a direct, cohesive answer to the user's question:
+        "(1) NVIDIA's revenue grew 126% vs AMD's 10%...
+         (2) NVIDIA trades at 45x forward P/E vs AMD's 25x...
+         (3) Risks: concentration in AI spending..."
+This is what the user actually reads as the final answer.
+```
+
+**Step 6 — Output Formatter** (`src/nodes/output_formatter.py`)
+```
+Input:  final_synthesis analysis + all step data
+Action: Two LLM calls to produce:
+  1. Structured JSON: summary, content blocks (metrics, tables, charts),
+     key insights, recommendations, metadata
+  2. React/TypeScript component: self-contained widget with Tailwind CSS,
+     Recharts charts, and Lucide icons — ready for a Next.js frontend
 ```
 
 ---
@@ -242,15 +288,15 @@ Key Pydantic models enforce structure:
 
 ## Self-Correction Mechanisms
 
-The system has three layers of error recovery:
+The system has three layers of error recovery, all driven by the Verifier node:
 
-| Mechanism | Trigger | Action | Limit |
-|-----------|---------|--------|-------|
-| **Retry** | Verifier says `NEEDS_MORE_DATA` | Re-execute current step with modified parameters | 2 per step |
-| **Replan** | Verifier says `REPLAN` | Go back to Decomposer, create entirely new plan | 1 per query |
-| **Recursion limit** | Graph exceeds 40 node calls | Force-stop and output whatever data we have | Hard limit |
+| Mechanism | Trigger | What Happens | Limit |
+|-----------|---------|-------------|-------|
+| **Retry** | Verifier says `NEEDS_MORE_DATA` | Verifier provides a modified `retry_step` with corrected parameters (e.g., different date range, different tool). Executor re-runs with the modified step. | 2 retries per step, then force OK |
+| **Replan** | Verifier says `REPLAN` | Entire plan is scrapped. Verifier provides a `replan_reason`. Decomposer sees the failed plan + reason and creates a completely new plan. | 1 replan per query, then force OK |
+| **Recursion limit** | Graph exceeds 40 total node calls | Force-stop, output whatever data has been gathered so far. | Hard limit (prevents runaway loops) |
 
-The Verifier always checks results against the **original user query** (stored in `state["query"]`), not just the step description. This ensures the system stays aligned with user intent throughout multi-step execution.
+**Intent alignment:** The Verifier always checks results against the **original user query** (stored in `state["query"]`), not just the step description. The mandatory `final_synthesis` step then synthesizes all findings into a direct answer to that original question, ensuring the output stays aligned with user intent.
 
 ---
 

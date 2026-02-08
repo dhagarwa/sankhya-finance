@@ -1,24 +1,37 @@
 """
-Decomposer Node - Breaks financial queries into executable steps.
+Decomposer Node - Plans the multi-step execution strategy.
 
 This is the "planning" node. It takes the user's financial query and
 produces a list of steps that the StepExecutor will execute one by one.
 
 Each step is either:
-    - DATA:     Fetch something from Yahoo Finance (specifies tool_name + parameters)
+    - DATA:     Fetch data using one of 21 tools across 5 sources
+                (YFinance, SEC EDGAR, FRED, FMP, DuckDuckGo)
     - ANALYSIS: Ask the LLM to reason about previously fetched data
+
+Step planning rules:
+    1. DATA steps first, then ANALYSIS steps that depend on them
+    2. Each step declares its dependencies (which step_ids it needs)
+    3. The LAST step is always "final_synthesis" -- an ANALYSIS step that
+       depends on ALL previous steps and directly answers the user's question
+    4. For comparisons, separate DATA steps per company
 
 The Decomposer also runs ticker extraction to identify which companies
 the user is asking about, so the LLM can generate correct tool parameters.
 
-The VerifierNode can send execution BACK to this node (via the "replan"
-verdict) if the original plan turns out to be wrong. When that happens,
-the Decomposer receives the replan_reason in state and adjusts the plan.
+Replan flow:
+    The VerifierNode can send execution BACK to this node (via the "replan"
+    verdict, max 1 replan per query) if the original plan is fundamentally
+    wrong (e.g., wrong tickers, wrong tools, wrong approach). When that
+    happens, the Decomposer receives the replan_reason in state, sees the
+    failed plan, and creates a new one.
 
-Flow:
-    QueryRouter -> [this node] -> StepExecutor -> Verifier -> ...
-                                                     |
-                                                     +-- "replan" --> [back to this node]
+Graph position:
+    QueryRouter -> [this node] -> Executor -> Verifier -> ...
+                                                  │
+                                     REPLAN ──────┘ (max 1, sends
+                                       │              replan_reason)
+                                       └──► [back to this node]
 """
 
 import json
@@ -91,6 +104,9 @@ CRITICAL RULES:
 7. For valuation questions, try to include BOTH trailing data (YFinance) AND forward estimates (FMP)
 8. For macro-sensitive analysis (banks, REITs, growth stocks), include relevant economic indicators
 9. Prefer SEC XBRL data (get_sec_financial_data) for long-term historical fundamental trends
+10. The LAST step MUST ALWAYS be an ANALYSIS step with step_id "final_synthesis" that depends on ALL previous steps.
+    Its analysis_prompt MUST directly answer the user's original question by synthesizing all gathered data and analysis.
+    This is the most important step -- it produces the answer the user actually sees.
 
 {replan_context}
 
@@ -100,7 +116,7 @@ Return a JSON object with this EXACT structure:
     "steps": [
         {{
             "step_id": "step_1",
-            "description": "What this step does",
+            "description": "Fetch current stock price for AAPL",
             "step_type": "DATA",
             "tool_name": "get_current_stock_price",
             "parameters": {{"ticker": "AAPL"}},
@@ -110,11 +126,20 @@ Return a JSON object with this EXACT structure:
             "step_id": "step_2",
             "description": "Analyze the price data",
             "step_type": "ANALYSIS",
-            "analysis_prompt": "Analyze the stock price data and provide insights about...",
+            "analysis_prompt": "Analyze the stock price data and provide insights...",
             "depends_on": ["step_1"]
+        }},
+        {{
+            "step_id": "final_synthesis",
+            "description": "Synthesize all findings into a direct answer to the user's question",
+            "step_type": "ANALYSIS",
+            "analysis_prompt": "You are writing the FINAL answer that the user will read. Synthesize ALL findings from previous steps to directly answer: [the user's question]. Structure: (1) Direct answer, (2) Key supporting evidence with specific numbers, (3) Risks or caveats. Be thorough but concise.",
+            "depends_on": ["step_1", "step_2"]
         }}
     ]
 }}
+
+IMPORTANT: You MUST include "final_synthesis" as the last step. It is mandatory. Without it the user gets no answer.
 
 Return ONLY valid JSON, no additional text."""
 

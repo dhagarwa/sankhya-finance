@@ -10,7 +10,15 @@ Design principles:
     2. Step results are tagged by type (DATA vs ANALYSIS) so consumers
        always know what they're getting
     3. Verification results use a proper model with typed verdict
+       (OK, NEEDS_MORE_DATA, REPLAN) that drives graph routing
     4. The state TypedDict references these models by type, not "Any"
+
+Key models:
+    - DecompositionStep: A planned step (DATA or ANALYSIS) with dependencies.
+      The last step is always "final_synthesis" which answers the user's question.
+    - StepResult: Result of executing a step (data dict or analysis text).
+    - VerificationResult: Verifier's verdict that drives routing
+      (OK -> next step, NEEDS_MORE_DATA -> retry, REPLAN -> new plan).
 """
 
 from __future__ import annotations

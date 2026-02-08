@@ -5,19 +5,29 @@ This node processes the step at state["current_step_index"] from the
 plan in state["steps"]. It handles two types of steps:
 
     DATA steps:
-        - Validates that all dependency steps completed successfully
-        - Looks up the tool by name from yfinance_tools.TOOLS_BY_NAME
+        - Looks up the tool by name from TOOLS_BY_NAME (21 tools across
+          5 sources: YFinance, SEC EDGAR, FRED, FMP, DuckDuckGo)
         - Calls the tool with the specified parameters
         - Stores a typed StepResult in state["step_results"][step_id]
 
     ANALYSIS steps:
-        - Validates that all dependency steps completed successfully
         - Gathers data from dependency steps (from step_results)
         - Sends the analysis_prompt + gathered data to the LLM
         - Stores a typed StepResult in state["step_results"][step_id]
+        - The final step is always "final_synthesis" which synthesizes
+          all findings into a direct answer to the user's question
 
-After each execution, the graph goes to the VerifierNode, which uses
-the LLM to check quality and decide the next routing.
+If the Verifier previously returned NEEDS_MORE_DATA with a retry_step,
+this node executes the modified retry_step instead of the original.
+
+Graph position:
+    Decomposer -> [this node] -> Verifier
+                      ▲              │
+                      │   NEEDS_MORE_DATA (retry with modified params, max 2)
+                      └──────────────┘
+                      ▲
+                      │   AdvanceIndex -> [this node] (next step)
+                      └──────────────────────────────┘
 
 This node does NOT decide what to do next -- it just executes and reports.
 The VerifierNode handles all routing decisions.

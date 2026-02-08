@@ -5,20 +5,26 @@ This is the FIRST node that runs after START. It classifies the user's
 query as either "financial" (needs data + analysis) or "non_financial"
 (can be answered directly by the LLM).
 
+Classification rule:
+    If the query mentions ANY specific company or ticker -> FINANCIAL
+    If no specific company is mentioned -> NON_FINANCIAL
+
 How it works:
     1. Sends the query to the LLM with a classification prompt
     2. LLM returns "YES" (financial) or "NO" (non-financial)
     3. Updates state with query_type = "financial" or "non_financial"
 
-The conditional edge after this node routes to:
-    - DecomposerNode     if query_type == "financial"
-    - DirectResponseNode if query_type == "non_financial"
+Graph routing after this node:
+    financial     -> Decomposer -> Executor <-> Verifier loop -> OutputFormatter -> END
+    non_financial -> DirectResponse -> OutputFormatter -> END
 
 Examples:
-    "What is Apple's stock price?"           -> financial
-    "Compare MSFT and GOOGL revenue growth"  -> financial
-    "What is a P/E ratio?"                   -> non_financial
-    "Hello, how are you?"                    -> non_financial
+    "What is Apple's stock price?"           -> financial (mentions Apple)
+    "Compare MSFT and GOOGL revenue growth"  -> financial (mentions MSFT, GOOGL)
+    "What is the latest news about Amazon?"  -> financial (mentions Amazon)
+    "What are analysts saying about NVDA?"   -> financial (mentions NVDA)
+    "What is a P/E ratio?"                   -> non_financial (no company)
+    "Hello, how are you?"                    -> non_financial (greeting)
 """
 
 from typing import Any
@@ -36,31 +42,32 @@ from src.utils.model_config import get_llm
 # a reliable YES/NO answer. We include examples for edge cases.
 # =============================================================================
 
-CLASSIFICATION_PROMPT = """You are an expert financial analyst. Determine if this user query requires real-time financial data from stock market APIs.
+CLASSIFICATION_PROMPT = """Does this query mention or ask about a SPECIFIC company, stock, or ticker?
 
 Query: "{query}"
 
-Return ONLY "YES" if the query requires:
-- Stock prices, market data, or financial metrics for specific companies
-- Company financial statements (income, balance sheet, cash flow)
-- Financial analysis, ratios, or comparisons between specific companies
-- Market trends or sector analysis using real data
-- Any information that needs to be fetched from financial data APIs
+STEP 1: Does the query mention a specific company name (like Apple, Tesla, Microsoft, Amazon, Nike) or a stock ticker (like AAPL, TSLA, MSFT)?
+- If YES -> respond "YES" (we need to fetch real data for that company)
+- If NO -> go to Step 2
 
-Return ONLY "NO" if the query is:
-- General financial education or definitions (e.g., "What is a P/E ratio?")
-- Generic investment advice (e.g., "How should I invest?")
-- Economic concepts or explanations
-- Conversational or greeting messages
-- Questions answerable from general knowledge without specific company data
+STEP 2: Does the query ask about general financial concepts, definitions, or generic advice with no specific company?
+- If YES -> respond "NO"
 
-Examples:
-  "What is Apple's current stock price?" -> YES
-  "Compare MSFT and GOOGL revenues" -> YES
-  "Show me Tesla's income statement" -> YES
+YES examples (mentions a specific company):
+  "What is Apple's stock price?" -> YES
+  "Latest news about Amazon" -> YES
+  "Tell me about NVDA" -> YES
+  "Is Tesla overvalued?" -> YES
+  "Compare MSFT and GOOGL" -> YES
+  "What are analysts saying about Netflix?" -> YES
+  "Show me Nike's balance sheet" -> YES
+  "What is the latest news about Apple Inc.?" -> YES
+
+NO examples (no specific company mentioned):
   "What is a P/E ratio?" -> NO
-  "How do I start investing?" -> NO
+  "How should I invest?" -> NO
   "Hello!" -> NO
+  "What causes inflation?" -> NO
 
 Response (YES or NO only):"""
 
